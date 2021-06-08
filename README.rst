@@ -9,8 +9,6 @@ Basic sequence of events
 
 Step 1 - Finding low redundancy methionine-aromatic interactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. _step1:
-
 The first step of this project involved finding methionine-aromatic interactions using the following dataset consisting of
 low redundancy PDB entries:
 
@@ -51,4 +49,11 @@ Here, the data was dumped into a MongoDB database.
 
 Step 2 - Finding 3-Bridges
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Methionine-aromatic interactons banked in step1_ were then processed using a modified `NetworkX <https://networkx.org/>`_ script for finding bridging interactions in the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project.
+Methionine-aromatic interactons banked in Step 1 were then processed using a modified `NetworkX <https://networkx.org/>`_ script for finding bridging interactions in
+the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project. The following file was obtained:
+
+.. code-block:: bash
+
+   data/3bridges_codes.csv
+
+This file consists of low redundancy PDB stuctures containing one or more 3-bridges.
