@@ -150,7 +150,7 @@ Which will yield the ``distribution.png`` file:
 .. raw:: html
 
     <p align="center">
-        <img src="distributions/distribution.png" width="300" height="230">
+        <img src="distributions/distribution.png" width="600" height="460">
     </p>
 
 Generating the convex hulls
