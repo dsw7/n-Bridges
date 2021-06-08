@@ -145,10 +145,27 @@ To generate the three convex hulls in this project, run:
     
     make convex
 
-Which field yield all of:
+Which field yield the convex hulls for the phenylalanine satellites:
 
 .. raw:: html
 
     <p align="center">
         <img src="convex_hulls/phe_bridges_3d.png">
     </p>
+
+And the tyrosine satellites:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="convex_hulls/tyr_bridges_3d.png">
+    </p>
+
+And last the tryptophan satellites:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="convex_hulls/trp_bridges_3d.png">
+    </p>
+
