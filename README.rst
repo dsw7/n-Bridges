@@ -136,3 +136,19 @@ Where the individual fields match:
     }
 
 And **P**, **Q**, **R**, **S** are unique residue position numbers.
+
+Generating the convex hulls
+--------------------------------------------------
+To generate the three convex hulls in this project, run:
+
+.. code-block::
+    
+    make convex
+
+Which field yield all of:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="convex_hulls/phe_bridges_3d.png">
+    </p>
