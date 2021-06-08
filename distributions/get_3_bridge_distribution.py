@@ -15,7 +15,7 @@ INPUT_FILENAME = 'n_3_bridge_transformations.json'
 OUTPUT_FILENAME = 'distribution.png'
 VERTICAL_IMAGE_SIZE_INCHES = 3
 HORIZONTAL_IMAGE_SIZE_INCHES = 3
-IMAGE_DPI = 100
+IMAGE_DPI = 250
 
 
 class ComputeDistribution:
