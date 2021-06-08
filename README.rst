@@ -73,6 +73,13 @@ In the last step, the data in Step 3 was mapped following:
 - The methionine **SD-CE** bond axis was render co-linear with the vector (1, 0, 0)
 - The methionine **CG-SD-CE** plane was rendered coplanar with the *xy* plane
 
+All mappings were loaded into the following JSON file:
+
+.. code-block:: bash
+
+    data/n_3_bridge_transformations.json
+
+An example entry in the JSON is of form:
 
 .. code-block::
 
@@ -111,3 +118,21 @@ In the last step, the data in Step 3 was mapped following:
             ],
             "code" : "8I1B"
     }
+
+Where the individual fields match:
+
+.. code-block::
+
+    {
+        MET<P>: [
+            SD_coordinates: [x, y, z],
+            CE_coordinates: [x, y, z],
+            CG_coordinates: [x, y, z]
+        ],
+        <PHE|TYR|TRP><Q>: [x, y, z],
+        <PHE|TYR|TRP><R>: [x, y, z],
+        <PHE|TYR|TRP><S>: [x, y, z]
+        code: [pdb-code]
+    }
+
+And **P**, **Q**, **R**, **S** are unique residue position numbers.
