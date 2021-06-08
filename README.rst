@@ -14,3 +14,4 @@ low redundancy PDB entries:
 
    data/low_redundancy_delimiter_list.csv
 
+The 3-bridges were found using the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project.
