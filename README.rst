@@ -137,12 +137,20 @@ Where the individual fields match:
 
 And **P**, **Q**, **R**, **S** are unique residue position numbers.
 
+Generating the bridge distributions
+--------------------------------------------------
+To generate the bar chart describing the distribution of the 3-bridges, run:
+
+.. code-block::
+
+    make dist
+
 Generating the convex hulls
 --------------------------------------------------
 To generate the three convex hulls in this project, run:
 
 .. code-block::
-    
+
     make convex
 
 Which field yield the convex hulls for the phenylalanine satellites:
