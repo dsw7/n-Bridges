@@ -60,3 +60,48 @@ This file consists of low redundancy PDB stuctures containing one or more 3-brid
 
 Step 3 - Isolating 3-Bridges and other relevant data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Next, the data in Step 2 was further processed to only include the following:
+
+- Methionine: *x, y, z* coordinates for **CE**, **SD** and **CG** coordinates
+- Aromatics: *x, y, z* coordinates for the aromatic centroids in any of **PHE**, **TYR**, or **TRP**
+
+Step 4 - Mapping
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block::
+
+    {
+            "MET95" : [
+                    [
+                            0,
+                            0,
+                            0
+                    ],
+                    [
+                            1.7932899932805066,
+                            -1.0617213491997201e-16,
+                            3.245657730897657e-17
+                    ],
+                    [
+                            2.0502975055774364,
+                            1.8305685287972522,
+                            -8.881784197001252e-16
+                    ]
+            ],
+            "TYR68" : [
+                    4.3213069436828375,
+                    4.585365158685238,
+                    -1.7532318471879298
+            ],
+            "PHE99" : [
+                    1.3596593463055182,
+                    4.299250047200179,
+                    3.4900506792385304
+            ],
+            "TYR90" : [
+                    5.783357705034454,
+                    0.6692003627477932,
+                    2.5985457048350815
+            ],
+            "code" : "8I1B"
+    }
