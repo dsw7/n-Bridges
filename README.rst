@@ -67,6 +67,12 @@ Next, the data in Step 2 was further processed to only include the following:
 
 Step 4 - Mapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+In the last step, the data in Step 3 was mapped following:
+
+- The methionine **SD** coordinate was mapped to the *x, y, z* coordinates *(0, 0, 0)*
+- The methionine **SD-CE** bond axis was render co-linear with the vector *(1, 0, 0)*
+- The methionine **CG-SD-CE** plane was rendered coplanar with the *xy* plane
+
 
 .. code-block::
 
