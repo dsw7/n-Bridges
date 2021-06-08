@@ -1,6 +1,7 @@
 Supporting information for n-Bridges
 ==================================================
-All code for the following publication: *TBD*
+Code for the following publication:
+- *TBD*
 
 Basic sequence of events
 --------------------------------------------------
