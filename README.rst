@@ -57,3 +57,7 @@ the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project. The following 
    data/3bridges_codes.csv
 
 This file consists of low redundancy PDB stuctures containing one or more 3-bridges.
+
+.. math::
+
+   \\frac{ \\sum_{t=0}^{N}f(t,k) }{N}
