@@ -14,7 +14,7 @@ low redundancy PDB entries:
 
 .. code-block:: bash
 
-   data/low_redundancy_delimiter_list.csv
+    data/low_redundancy_delimiter_list.csv
 
 The methionine-aromatic interactions were found using the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project. First, the project's ``runner.ini`` was modified as follows:
 
@@ -54,10 +54,9 @@ the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project. The following 
 
 .. code-block:: bash
 
-   data/3bridges_codes.csv
+    data/3bridges_codes.csv
 
 This file consists of low redundancy PDB stuctures containing one or more 3-bridges.
 
-.. math::
-
-   \\frac{ \\sum_{t=0}^{N}f(t,k) }{N}
+Step 3 - Isolating 3-Bridges and other relevant data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
