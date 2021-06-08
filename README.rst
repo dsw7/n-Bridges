@@ -145,6 +145,14 @@ To generate the bar chart describing the distribution of the 3-bridges, run:
 
     make dist
 
+Which will yield the ``distribution.png`` file:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="distributions/distribution.png">
+    </p>
+
 Generating the convex hulls
 --------------------------------------------------
 To generate the three convex hulls in this project, run:
@@ -176,4 +184,3 @@ And last the tryptophan satellites:
     <p align="center">
         <img src="convex_hulls/trp_bridges_3d.png">
     </p>
-
