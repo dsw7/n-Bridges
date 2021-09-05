@@ -7,7 +7,7 @@ Groupby convex hull plots for mapped bridges.
 import sys
 import logging
 from os import path, makedirs
-from json import load
+from json import load, dump
 from itertools import groupby
 from re import (
     findall,
@@ -107,6 +107,17 @@ class GroupPipeline:
         for group in bad_groups:
             del self.grouped_data[group]
 
+    def dump_data(self) -> None:
+        path_to_dump = path.join(ROOT, 'dump')
+        makedirs(path_to_dump, exist_ok=True)
+
+        for group in self.grouped_data:
+            filepath = path.join(path_to_dump, '{}.json'.format(group.lower()))
+            logging.info('Dumping %s sorted data to %s', group, filepath)
+
+            with open(filepath, 'w') as f:
+                dump(self.grouped_data[group], f, indent=4)
+
     def executor_main(self) -> dict:
         self.insert_sort_key()
         self.sort_raw_data()
@@ -114,6 +125,7 @@ class GroupPipeline:
         self.collect_statistics()
         self.remove_outliers()
         self.collect_statistics()
+        self.dump_data()
         return self.grouped_data
 
 
