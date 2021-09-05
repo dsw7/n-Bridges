@@ -198,7 +198,8 @@ There exist 10 combinations owing to the following:
 .. raw:: html
 
     <p align="center">
-        <img src=""https://latex.codecogs.com/svg.latex?\frac{(r&plus;n-1)!}{(n-1)r!}>
+        <img src="https://latex.codecogs.com/svg.latex?\frac{(r&plus;n-1)!}{(n-1)r!}">
     </p>
 
-Where _r_ = 3
+Where *n* = 3, given that Nature can choose from one of PHE, TYR or TRP and *r* = 3 corresponding
+to a 3-bridge.
