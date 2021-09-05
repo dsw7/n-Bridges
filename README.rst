@@ -184,3 +184,21 @@ And last the tryptophan satellites:
     <p align="center">
         <img src="convex_hulls/trp_bridges_3d.png">
     </p>
+
+Generating convex hulls for all 10 possible 3-bridge permutations
+--------------------------------------------------
+To generate the 10 convex hulls for all possible 3-bridge permutations, run:
+
+.. code-block::
+
+    make convex-groupby
+
+There exist 10 combinations owing to the following:
+
+.. raw:: html
+
+    <p align="center">
+        <img src=""https://latex.codecogs.com/svg.latex?\frac{(r&plus;n-1)!}{(n-1)r!}>
+    </p>
+
+Where _r_ = 3
