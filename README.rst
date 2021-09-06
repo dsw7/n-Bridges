@@ -139,11 +139,11 @@ Where the individual fields match:
     }
 
 And **P**, **Q**, **R**, **S** are unique residue position numbers. A mathematical description of
-the mapping algorithm can be found in the Mapping_algorithm_ section.
+the mapping algorithm can be found in the Algorithm_ section.
 
 Mapping algorithm
 --------------------------------------------------
-.. _Mapping_algorithm:
+.. _Algorithm:
 
 The mapping algorithm assumes a cluster consisting of *CE*, *SD* and *CG* coordinates,
 alongside three satellite points *S1*, *S2*, and *S3*. Here, the three satellite points
