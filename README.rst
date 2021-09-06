@@ -146,13 +146,27 @@ To generate the bar chart describing the distribution of the 3-bridges, run:
 
     make dist
 
-Which will yield the ``distribution.png`` file:
+This ``make`` target will generate the ``./*/plots/distribution.png`` plot.
+
+Generating convex hulls for all 10 3-bridge permutations
+--------------------------------------------------
+To generate the 10 convex hulls for all possible 3-bridge permutations, run:
+
+.. code-block::
+
+    make convex-groupby
+
+This ``make`` target will generate the ``./*/plots/(phe|tyr|trp)(phe|tyr|trp)(phe|tyr|trp)_bridges_3d.png`` plots. There
+exist 10 combinations owing to the following:
 
 .. raw:: html
 
     <p align="center">
-        <img src="distributions/distribution.png" width="500" height="383">
+        <img src="https://latex.codecogs.com/svg.latex?\frac{(r&plus;n-1)!}{(n-1)r!}">
     </p>
+
+Where *n* = 3, given that Nature can choose from one of PHE, TYR or TRP and *r* = 3 corresponding
+to a 3-bridge.
 
 Generating the convex hulls
 --------------------------------------------------
@@ -186,21 +200,3 @@ And last the tryptophan satellites:
         <img src="convex_hulls/trp_bridges_3d.png">
     </p>
 
-Generating convex hulls for all 10 possible 3-bridge permutations
---------------------------------------------------
-To generate the 10 convex hulls for all possible 3-bridge permutations, run:
-
-.. code-block::
-
-    make convex-groupby
-
-There exist 10 combinations owing to the following:
-
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\frac{(r&plus;n-1)!}{(n-1)r!}">
-    </p>
-
-Where *n* = 3, given that Nature can choose from one of PHE, TYR or TRP and *r* = 3 corresponding
-to a 3-bridge.
