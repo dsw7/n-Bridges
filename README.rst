@@ -68,7 +68,7 @@ Next, the data in Step 2 was further processed to only include the following:
 
 Step 4 - Mapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. _mapping:
+.. _Mapping:
 
 In the last step, the data in Step 3 was mapped following:
 
@@ -138,10 +138,13 @@ Where the individual fields match:
         code: [pdb-code]
     }
 
-And **P**, **Q**, **R**, **S** are unique residue position numbers.
+And **P**, **Q**, **R**, **S** are unique residue position numbers. A mathematical description of
+the mapping algorithm can be found in the Mapping_algorithm_ section.
 
 Mapping algorithm
 --------------------------------------------------
+.. _Mapping_algorithm:
+
 The mapping algorithm assumes a cluster consisting of *CE*, *SD* and *CG* coordinates,
 alongside three satellite points *S1*, *S2*, and *S3*. Here, the three satellite points
 are the Cartesian coordinates describing the aromatic centroid in any of phenylalanine,
@@ -205,7 +208,7 @@ rotation takes place about the *x* axis:
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{H}{CG}}\\&space;{^{H}{S_1}}\\&space;{^{H}{S_2}}\\&space;{^{H}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{G}{CG}},\vec{u},-\theta_2)\\&space;q({^{G}{S_1}},\vec{u},-\theta_2)\\&space;q({^{G}{S_2}},\vec{u},-\theta_2)\\&space;q({^{G}{S_3}},\vec{u},-\theta_2)\\&space;\end{bmatrix}">
     </p>
 
-The *CG, *SD*, *CE, *S1*, *S2* and *S3* coordinates will now be mapped according to the criteria set out in mapping_.
+The *CG, *SD*, *CE, *S1*, *S2* and *S3* coordinates will now be mapped according to the criteria set out in the Mapping_ section.
 
 Generating the bridge distributions
 --------------------------------------------------
