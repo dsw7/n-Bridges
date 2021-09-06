@@ -168,12 +168,20 @@ The algorithm also computes an axis of rotation (the Euler axis),
         <img src="https://latex.codecogs.com/svg.latex?\vec{u}={_{}^{F}{CE}}\times\begin{bmatrix}1&0&0\end{bmatrix}">
     </p>
 
-All members of *F* are rotated into a new frame *G* using a quaternion operation *q*, for simplicity defined here as,
+All members of *F* are rotated into a new frame *G* using a quaternion operation *q*. For simplicity, *q* is defined here as:
 
 .. raw:: html
 
     <p align="center">
         <img src="https://latex.codecogs.com/svg.latex?q(\vec{v},\vec{u},\theta_1)">
+    </p>
+
+And *G* is defined as:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{G}{CG}}\\&space;{^{G}{SD}}\\&space;{^{G}{CE}}\\&space;{^{G}{S_1}}\\&space;{^{G}{S_2}}\\&space;{^{G}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{F}{CG}},\vec{u},\theta_1)\\&space;q({^{F}{SD}},\vec{u},\theta_1)\\&space;q({^{F}{CE}},\vec{u},\theta_1)\\&space;q({^{F}{S_1}},\vec{u},\theta_1)\\&space;q({^{F}{S_2}},\vec{u},\theta_1)\\&space;q({^{F}{S_3}},\vec{u},\theta_1)\\&space;\end{bmatrix}">
     </p>
 
 Generating the bridge distributions
