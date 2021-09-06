@@ -1,4 +1,4 @@
-.PHONY = help convex dist
+.PHONY = help convex dist convex-groupby
 
 PYTHON_INTERP = /usr/bin/env python3
 ROOT_DIRECTORY := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
