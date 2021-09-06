@@ -165,7 +165,7 @@ The algorithm also computes an axis of rotation,
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?u_1=^{F}{CE}\times\begin{bmatrix}1&0&0\end{}">
+        <img src="https://latex.codecogs.com/svg.latex?u_1={_{}^{F}{CE}}\times\begin{bmatrix}1&0&0\end{bmatrix}">
     </p>
 
 
