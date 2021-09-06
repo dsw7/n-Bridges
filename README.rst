@@ -208,7 +208,7 @@ rotation takes place about the *x* axis:
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{H}{CG}}\\&space;{^{H}{S_1}}\\&space;{^{H}{S_2}}\\&space;{^{H}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{G}{CG}},\vec{u},-\theta_2)\\&space;q({^{G}{S_1}},\vec{u},-\theta_2)\\&space;q({^{G}{S_2}},\vec{u},-\theta_2)\\&space;q({^{G}{S_3}},\vec{u},-\theta_2)\\&space;\end{bmatrix}">
     </p>
 
-The *CG, *SD*, *CE, *S1*, *S2* and *S3* coordinates will now be mapped according to the criteria set out in the Mapping_ section.
+The *CG*, *SD*, *CE*, *S1*, *S2* and *S3* coordinates will now be mapped according to the criteria set out in the Mapping_ section.
 
 Generating the bridge distributions
 --------------------------------------------------
