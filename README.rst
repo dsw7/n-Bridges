@@ -199,8 +199,16 @@ and *CG-SD-CE* planes is obtained:
         <img src="https://latex.codecogs.com/svg.latex?\theta_2=\textrm{atan}^2(CG.z,CG.y)"
     </p>
 
-Now the remaining coordinates will be rotated into their final frame *H*. *CE* is omitted from the calculation as the
-rotation takes place about the *x* axis:
+The remaining coordinates will be rotated into their final frame *H*. *CE* is omitted from the calculation as the
+rotation takes place about the *x* axis. The Euler axis is defined as:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\vec{u}=\begin{bmatrix}1&0&0\end{bmatrix}"
+    </p>
+
+The rotation follows,
 
 .. raw:: html
 
@@ -208,7 +216,7 @@ rotation takes place about the *x* axis:
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{H}{CG}}\\&space;{^{H}{S_1}}\\&space;{^{H}{S_2}}\\&space;{^{H}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{G}{CG}},\vec{u},-\theta_2)\\&space;q({^{G}{S_1}},\vec{u},-\theta_2)\\&space;q({^{G}{S_2}},\vec{u},-\theta_2)\\&space;q({^{G}{S_3}},\vec{u},-\theta_2)\\&space;\end{bmatrix}">
     </p>
 
-The *CG*, *SD*, *CE*, *S1*, *S2* and *S3* coordinates will now be mapped according to the criteria set out in the Mapping_ section.
+The *CG*, *SD*, *CE*, *S1*, *S2* and *S3* coordinate frame *H* will now be positioned according to the criteria set out in the Mapping_ section.
 
 Generating the bridge distributions
 --------------------------------------------------
