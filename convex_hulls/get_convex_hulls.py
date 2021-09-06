@@ -33,6 +33,7 @@ class FilterData:
             self.raw_data = load(f)
 
     def get_phe_data(self) -> list:
+        logging.info('Isolating phenylalanine data from original dataset')
         phe_coordinates = []
 
         for document in self.raw_data:
@@ -43,6 +44,7 @@ class FilterData:
         return list(zip(*phe_coordinates))
 
     def get_tyr_data(self) -> list:
+        logging.info('Isolating tyrosine data from original dataset')
         tyr_coordinates = []
 
         for document in self.raw_data:
@@ -53,6 +55,7 @@ class FilterData:
         return list(zip(*tyr_coordinates))
 
     def get_trp_data(self) -> list:
+        logging.info('Isolating tryptophan data from original dataset')
         trp_coordinates = []
 
         for document in self.raw_data:
