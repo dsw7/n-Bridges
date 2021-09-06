@@ -1,14 +1,9 @@
 Supporting information for n-Bridges
 ==================================================
-Code for the following publication:
-
-- *TBD*
-
 
 .. contents::
   :local:
   :depth: 3
-
 
 Basic sequence of events
 --------------------------------------------------
