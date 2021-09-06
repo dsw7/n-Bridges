@@ -140,12 +140,16 @@ And **P**, **Q**, **R**, **S** are unique residue position numbers.
 
 Mapping algorithm
 --------------------------------------------------
+We assume a cluster consisting of **CE**, **SD** and **CG** coordinates, alongside three satellite
+points S\ :sub:1\ dal
 
 .. raw:: html
 
     <p align="center">
         <img src="docs/step1.png" width=50%>
     </p>
+
+
 
 Generating the bridge distributions
 --------------------------------------------------
