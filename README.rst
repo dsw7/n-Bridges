@@ -4,6 +4,9 @@ Code for the following publication:
 
 - *TBD*
 
+.. toctree::
+  :maxdepth: 2
+
 Basic sequence of events
 --------------------------------------------------
 
