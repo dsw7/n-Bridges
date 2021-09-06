@@ -170,33 +170,10 @@ to a 3-bridge.
 
 Generating the convex hulls
 --------------------------------------------------
-To generate the three convex hulls in this project, run:
+To generate three convex hulls depicting the spatial distribution of 1 of PHE, TYR, or TRP, run:
 
 .. code-block::
 
     make convex
 
-Which field yield the convex hulls for the phenylalanine satellites:
-
-.. raw:: html
-
-    <p align="center">
-        <img src="convex_hulls/phe_bridges_3d.png">
-    </p>
-
-And the tyrosine satellites:
-
-.. raw:: html
-
-    <p align="center">
-        <img src="convex_hulls/tyr_bridges_3d.png">
-    </p>
-
-And last the tryptophan satellites:
-
-.. raw:: html
-
-    <p align="center">
-        <img src="convex_hulls/trp_bridges_3d.png">
-    </p>
-
+This ``make`` target will generate the ``./*/plots/(phe|tyr|trp)_bridges_3d.png`` plots.
