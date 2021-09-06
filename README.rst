@@ -157,7 +157,7 @@ The algorithm computes the direction cosine between the mapped *CE* coordinates 
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\theta_1=\cos^{-1}\frac{&space;^{F}{CE}\cdot\begin{bmatrix}1&space;&&space;0&space;&&space;0\end{bmatrix}&space;}{&space;\left\|^{F}{CE}\right\|&space;}">
+        <img src="https://latex.codecogs.com/svg.latex?\theta_1=\cos^{-1}\frac{_{}^{F}{CE}\cdot\begin{bmatrix}1&0&0\end{bmatrix}}{\left\|_{}^{F}{CE}\right\|}">
     </p>
 
 The algorithm also computes an axis of rotation,
