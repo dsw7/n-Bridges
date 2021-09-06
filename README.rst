@@ -138,6 +138,15 @@ Where the individual fields match:
 
 And **P**, **Q**, **R**, **S** are unique residue position numbers.
 
+Mapping algorithm
+--------------------------------------------------
+
+.. raw:: html
+
+    <p align="center">
+        <img src="docs/all.png">
+    </p>
+
 Generating the bridge distributions
 --------------------------------------------------
 To generate the bar chart describing the distribution of the 3-bridges, run:
