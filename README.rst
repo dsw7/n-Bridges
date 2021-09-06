@@ -140,16 +140,16 @@ And **P**, **Q**, **R**, **S** are unique residue position numbers.
 
 Mapping algorithm
 --------------------------------------------------
-We assume a cluster consisting of *CE*, *SD* and *CG* coordinates, alongside three satellite
-points S :subscript:`1` 
+The mapping algorithm assumes a cluster consisting of *CE*, *SD* and *CG* coordinates,
+alongside three satellite points *S1*, *S2*, and *S3*. Here, the three satellite points
+are the Cartesian coordinates describing the aromatic centroid in any of phenylalanine,
+tyrosine or tryptophan:
 
 .. raw:: html
 
     <p align="center">
-        <img src="docs/step1.png" width=50%>
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}CG\\SD\\CE\\S_1\\S_2\\S_3\end{bmatrix}">
     </p>
-
-
 
 Generating the bridge distributions
 --------------------------------------------------
