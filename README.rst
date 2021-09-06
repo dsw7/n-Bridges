@@ -185,8 +185,14 @@ And *G* is defined as:
     </p>
 
 The *SD* coordinates are not included in the rotation as *SD* remains the origin of *G*. The *SD-CE* bond axis is now
-co-linear with the *x* axis.
+colinear with the *x* axis. The *CG* coordinates remain non-coplanar with the *xy* plane. The angle between the *xy*
+and *CG-SD-CE* planes is obtained:
 
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\theta_2=\textrm{atan}^2(CG.z,CG.y)"
+    </p>
 
 Generating the bridge distributions
 --------------------------------------------------
