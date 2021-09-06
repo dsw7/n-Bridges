@@ -170,7 +170,7 @@ to a 3-bridge.
 
 Generating the convex hulls
 --------------------------------------------------
-To generate three convex hulls depicting the spatial distribution of 1 of PHE, TYR, or TRP, run:
+To generate three convex hulls depicting the spatial distribution of one of PHE, TYR, or TRP, run:
 
 .. code-block::
 
