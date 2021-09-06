@@ -6,7 +6,7 @@ Code for the following publication:
 
 .. contents::
   :local:
-  :maxdepth: 2
+  :depth: 3
 
 Basic sequence of events
 --------------------------------------------------
