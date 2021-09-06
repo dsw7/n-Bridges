@@ -4,6 +4,7 @@ dsw7@sfu.ca
 Convex hull plots for mapped bridges.
 """
 
+import sys
 import logging
 from os import path, makedirs
 from json import load
@@ -17,20 +18,26 @@ DIM_XYZ_NEG = -7
 DIM_XYZ_POS =  7
 PLOT_DOTS_PER_INCH = 100
 FIGSIZE_WIDTH_HEIGHT_INCHES = (5, 5)
+EXIT_FAILURE = 1
 
 logging.basicConfig(
     level=logging.INFO,
     format='%(levelname)s:%(name)s %(message)s'
 )
 
+
 class FilterData:
 
-    def __init__(self):
-        path_to_input = path.join(path.dirname(path.dirname(__file__)), 'data', INPUT_FILENAME)
-        logging.info('Reading data from file %s', path_to_input)
+    def __init__(self) -> None:
+        path_to_json = path.join(path.dirname(path.dirname(__file__)), 'data', INPUT_FILENAME)
+        logging.info('Reading data from file %s', path_to_json)
 
-        with open(path_to_input) as f:
-            self.raw_data = load(f)
+        try:
+            with open(path_to_json) as f:
+                self.raw_data = load(f)
+        except FileNotFoundError:
+            logging.exception('Could not open file!')
+            sys.exit(EXIT_FAILURE)
 
     def get_phe_data(self) -> list:
         logging.info('Isolating phenylalanine data from original dataset')
