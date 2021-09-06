@@ -141,7 +141,7 @@ And **P**, **Q**, **R**, **S** are unique residue position numbers.
 Mapping algorithm
 --------------------------------------------------
 We assume a cluster consisting of **CE**, **SD** and **CG** coordinates, alongside three satellite
-points **S:subscript:`1`** 
+points *S:subscript:`1`* 
 
 .. raw:: html
 
