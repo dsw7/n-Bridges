@@ -68,6 +68,8 @@ Next, the data in Step 2 was further processed to only include the following:
 
 Step 4 - Mapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _mapping:
+
 In the last step, the data in Step 3 was mapped following:
 
 - The methionine **SD** coordinate was mapped to the *x, y, z* coordinates (0, 0, 0)
@@ -194,14 +196,16 @@ and *CG-SD-CE* planes is obtained:
         <img src="https://latex.codecogs.com/svg.latex?\theta_2=\textrm{atan}^2(CG.z,CG.y)"
     </p>
 
-Now the remaining coordinates will be rotated into their final position. *CE* is omitted from the calculation as the
-rotation takes place about the *x* axis.
+Now the remaining coordinates will be rotated into their final frame *H*. *CE* is omitted from the calculation as the
+rotation takes place about the *x* axis:
 
 .. raw:: html
 
     <p align="center">
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{H}{CG}}\\&space;{^{H}{S_1}}\\&space;{^{H}{S_2}}\\&space;{^{H}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{G}{CG}},\vec{u},-\theta_2)\\&space;q({^{G}{S_1}},\vec{u},-\theta_2)\\&space;q({^{G}{S_2}},\vec{u},-\theta_2)\\&space;q({^{G}{S_3}},\vec{u},-\theta_2)\\&space;\end{bmatrix}">
     </p>
+
+The *CG, *SD*, *CE, *S1*, *S2* and *S3* coordinates will now be mapped according to the criteria set out in :ref:`mapping`.
 
 Generating the bridge distributions
 --------------------------------------------------
