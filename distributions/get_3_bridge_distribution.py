@@ -5,6 +5,7 @@ Plot a hbar chart depicting distribution of all 10 possible 3-bridge
 aromatic permutations
 """
 
+import sys
 import logging
 from os import path, makedirs
 from re import match
@@ -17,6 +18,7 @@ OUTPUT_FILENAME = 'distribution.png'
 VERTICAL_IMAGE_SIZE_INCHES = 3
 HORIZONTAL_IMAGE_SIZE_INCHES = 3
 IMAGE_DPI = 250
+EXIT_FAILURE = 1
 
 logging.basicConfig(
     level=logging.INFO,
@@ -27,11 +29,15 @@ logging.basicConfig(
 class ComputeDistribution:
 
     def __init__(self):
-        path_to_input = path.join(path.dirname(path.dirname(__file__)), 'data', INPUT_FILENAME)
-        logging.info('Reading data from file %s', path_to_input)
+        path_to_json = path.join(path.dirname(path.dirname(__file__)), 'data', INPUT_FILENAME)
+        logging.info('Reading data from file %s', path_to_json)
 
-        with open(path_to_input) as f:
-            self.raw_data = load(f)
+        try:
+            with open(path_to_json) as f:
+                self.raw_data = load(f)
+        except FileNotFoundError:
+            logging.exception('Could not open file!')
+            sys.exit(EXIT_FAILURE)
 
         self.all_residues = []
         self.bridges = []
