@@ -4,6 +4,8 @@ Code for the following publication:
 
 - *TBD*
 
+Table of contents
+--------------------------------------------------
 .. contents::
   :local:
   :depth: 3
