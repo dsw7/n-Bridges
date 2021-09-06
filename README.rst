@@ -152,6 +152,15 @@ tyrosine or tryptophan. The algorithm starts by mapping the cluster to a frame *
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}&space;{_{}^{F}{CG}}\\&space;{_{}^{F}{SD}}\\&space;{_{}^{F}{CE}}\\&space;{_{}^{F}{S_1}}\\&space;{_{}^{F}{S_2}}\\&space;{_{}^{F}{S_3}}\end{bmatrix}=&space;\begin{bmatrix}&space;CG\\&space;SD\\&space;CE\\&space;S_1\\S_2\\S_3\end{bmatrix}-SD">
     </p>
 
+The algorithm computes the direction cosine between the mapped *CE* coordinates and the *x* axis:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/gif.latex?\theta_1=\cos^{-1}\frac{&space;^{F}{CE}\cdot\begin{bmatrix}1&space;&&space;0&space;&&space;0\end{bmatrix}&space;}{&space;\left\|^{F}{CE}\right\|&space;}">
+    </p>
+
+
 Generating the bridge distributions
 --------------------------------------------------
 To generate the bar chart describing the distribution of the 3-bridges, run:
