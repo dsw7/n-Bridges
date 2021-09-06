@@ -181,8 +181,12 @@ And *G* is defined as:
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{G}{CG}}\\&space;{^{G}{CE}}\\&space;{^{G}{S_1}}\\&space;{^{G}{S_2}}\\&space;{^{G}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{F}{CG}},\vec{u},\theta_1)\\&space;q({^{F}{CE}},\vec{u},\theta_1)\\&space;q({^{F}{S_1}},\vec{u},\theta_1)\\&space;q({^{F}{S_2}},\vec{u},\theta_1)\\&space;q({^{F}{S_3}},\vec{u},\theta_1)\\&space;\end{bmatrix}">
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{G}{CG}}\\&space;{^{G}{CE}}\\&space;{^{G}{S_1}}\\&space;{^{G}{S_2}}\\&space;{^{G}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{F}{CG}},\vec{u},-\theta_1)\\&space;q({^{F}{CE}},\vec{u},-\theta_1)\\&space;q({^{F}{S_1}},\vec{u},-\theta_1)\\&space;q({^{F}{S_2}},\vec{u},-\theta_1)\\&space;q({^{F}{S_3}},\vec{u},-\theta_1)\\&space;\end{bmatrix}">
     </p>
+
+The *SD* coordinates are not included in the rotation as *SD* remains the origin of *G*. The *SD-CE* bond axis is now
+co-linear with the *x* axis.
+
 
 Generating the bridge distributions
 --------------------------------------------------
