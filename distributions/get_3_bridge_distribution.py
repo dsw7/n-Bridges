@@ -5,6 +5,7 @@ Plot a hbar chart depicting distribution of all 10 possible 3-bridge
 aromatic permutations
 """
 
+import logging
 from os import path, makedirs
 from re import match
 from collections import Counter
@@ -17,12 +18,17 @@ VERTICAL_IMAGE_SIZE_INCHES = 3
 HORIZONTAL_IMAGE_SIZE_INCHES = 3
 IMAGE_DPI = 250
 
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(levelname)s:%(name)s %(message)s'
+)
+
 
 class ComputeDistribution:
 
     def __init__(self):
         path_to_input = path.join(path.dirname(path.dirname(__file__)), 'data', INPUT_FILENAME)
-        print('> Reading data from file {}'.format(path_to_input))
+        logging.info('Reading data from file %s', path_to_input)
 
         with open(path_to_input) as f:
             self.raw_data = load(f)
@@ -97,7 +103,7 @@ def main():
     makedirs(rootdir, exist_ok=True)
 
     export_file = path.join(rootdir, OUTPUT_FILENAME)
-    print('> Exporting file to {}'.format(export_file))
+    logging.info('Exporting file to %s', export_file)
     pyplot.savefig(export_file, dpi=IMAGE_DPI, bbox_inches='tight')
 
 if __name__ == '__main__':
