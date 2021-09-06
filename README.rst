@@ -144,7 +144,7 @@ Mapping algorithm
 .. raw:: html
 
     <p align="center">
-        <img src="docs/all.png" width=50%>
+        <img src="docs/step1.png" width=50%>
     </p>
 
 Generating the bridge distributions
