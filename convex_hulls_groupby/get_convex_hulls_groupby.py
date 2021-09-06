@@ -172,7 +172,7 @@ class RenderConvexHulls:
         ax.set_title('{} bridges'.format(self.group))
 
         filepath = path.join(self.path_to_plots, '{}_bridges_3d.png'.format(self.group.lower()))
-        logging.info('Exporting {}'.format(filepath))
+        logging.info('Exporting %s', filepath)
         pyplot.savefig(filepath, dpi=PLOT_DOTS_PER_INCH)
 
     def executor_main(self) -> None:
