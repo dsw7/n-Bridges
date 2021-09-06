@@ -1,6 +1,6 @@
 .PHONY = help convex dist
 
-PYTHON_INTERP = /usr/bin/python3
+PYTHON_INTERP = /usr/bin/env python3
 ROOT_DIRECTORY := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 define HELP_LIST_TARGETS
