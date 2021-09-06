@@ -5,6 +5,7 @@ Code for the following publication:
 - *TBD*
 
 .. contents::
+  :local:
   :maxdepth: 2
 
 Basic sequence of events
