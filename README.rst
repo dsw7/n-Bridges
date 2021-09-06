@@ -173,7 +173,7 @@ All members of *F* are rotated into a new frame *G* using a quaternion operation
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?q(\vec{v},\vec{u},\theta_1)">
+        <img src="https://latex.codecogs.com/svg.latex?q(\vec{v},\vec{u},\theta)">
     </p>
 
 And *G* is defined as:
@@ -192,6 +192,15 @@ and *CG-SD-CE* planes is obtained:
 
     <p align="center">
         <img src="https://latex.codecogs.com/svg.latex?\theta_2=\textrm{atan}^2(CG.z,CG.y)"
+    </p>
+
+Now the remaining coordinates will be rotated into their final position. *CE* is omitted from the calculation as the
+rotation takes place about the *x* axis.
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{H}{CG}}\\&space;{^{H}{S_1}}\\&space;{^{H}{S_2}}\\&space;{^{H}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{G}{CG}},\vec{u},-\theta_2)\\&space;q({^{G}{S_1}},\vec{u},-\theta_2)\\&space;q({^{G}{S_2}},\vec{u},-\theta_2)\\&space;q({^{G}{S_3}},\vec{u},-\theta_2)\\&space;\end{bmatrix}">
     </p>
 
 Generating the bridge distributions
