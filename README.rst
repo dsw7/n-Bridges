@@ -6,6 +6,7 @@ Code for the following publication:
 
 Table of contents
 --------------------------------------------------
+
 .. contents::
   :local:
   :depth: 3
