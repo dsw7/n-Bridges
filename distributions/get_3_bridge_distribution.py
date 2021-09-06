@@ -5,7 +5,7 @@ Plot a hbar chart depicting distribution of all 10 possible 3-bridge
 aromatic permutations
 """
 
-from os import path
+from os import path, makedirs
 from re import match
 from collections import Counter
 from json import load
@@ -93,9 +93,11 @@ def main():
     ax.spines['top'].set_visible(False)
     ax.invert_yaxis()
 
-    export_file = path.join(path.dirname(__file__), OUTPUT_FILENAME)
-    print('> Exporting file to {}'.format(export_file))
+    rootdir = path.join(path.dirname(__file__), 'plots')
+    makedirs(rootdir, exist_ok=True)
 
+    export_file = path.join(rootdir, OUTPUT_FILENAME)
+    print('> Exporting file to {}'.format(export_file))
     pyplot.savefig(export_file, dpi=IMAGE_DPI, bbox_inches='tight')
 
 if __name__ == '__main__':

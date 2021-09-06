@@ -27,7 +27,7 @@ class FilterData:
 
     def __init__(self):
         path_to_input = path.join(path.dirname(path.dirname(__file__)), 'data', INPUT_FILENAME)
-        logging.info('Reading data from file {}'.format(path_to_input))
+        logging.info('Reading data from file %s', path_to_input)
 
         with open(path_to_input) as f:
             self.raw_data = load(f)
@@ -95,7 +95,7 @@ class RenderConvexHulls:
         ax_phe.scatter(*data, c='r', marker='o', s=1)
         ax_phe.plot(*self.ce_sd_cg_frame, c='k', lw=2)
         ax_phe.set_title('PHE bridges')
-        logging.info('Exporting {}'.format(filepath))
+        logging.info('Exporting %s', filepath)
         pyplot.savefig(filepath, dpi=PLOT_DOTS_PER_INCH)
 
     def render_tyr_convex_hull(self, data: list, filepath: str) -> None:
@@ -105,7 +105,7 @@ class RenderConvexHulls:
         ax_tyr.scatter(*data, c='r', marker='o', s=1)
         ax_tyr.plot(*self.ce_sd_cg_frame, c='k', lw=2)
         ax_tyr.set_title('TYR bridges')
-        logging.info('Exporting {}'.format(filepath))
+        logging.info('Exporting %s', filepath)
         pyplot.savefig(filepath, dpi=PLOT_DOTS_PER_INCH)
 
     def render_trp_convex_hull(self, data: list, filepath: str) -> None:
@@ -115,7 +115,7 @@ class RenderConvexHulls:
         ax_trp.scatter(*data, c='r', marker='o', s=1)
         ax_trp.plot(*self.ce_sd_cg_frame, c='k', lw=2)
         ax_trp.set_title('TRP bridges')
-        logging.info('Exporting {}'.format(filepath))
+        logging.info('Exporting %s', filepath)
         pyplot.savefig(filepath, dpi=PLOT_DOTS_PER_INCH)
 
 
