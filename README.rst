@@ -151,6 +151,21 @@ tyrosine or tryptophan:
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}CG\\SD\\CE\\S_1\\S_2\\S_3\end{bmatrix}">
     </p>
 
+This cluster is then mapped to a frame *F*, where *SD* is considered the origin:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}
+        &space;{_{}^{F}{CG}}\\
+        &space;{_{}^{F}{SD}}\\
+        &space;{_{}^{F}{CE}}\\
+        &space;{_{}^{F}{S_1}}\\
+        &space;{_{}^{F}{S_2}}\\
+        &space;{_{}^{F}{S_3}}
+        \end{bmatrix}=&space;\begin{bmatrix}&space;CG\\&space;SD\\&space;CE\\&space;S_1\\S_2\\S_3\end{bmatrix}-SD">
+    </p>
+
 Generating the bridge distributions
 --------------------------------------------------
 To generate the bar chart describing the distribution of the 3-bridges, run:
