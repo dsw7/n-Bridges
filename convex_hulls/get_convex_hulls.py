@@ -4,7 +4,8 @@ dsw7@sfu.ca
 Convex hull plots for mapped bridges.
 """
 
-from os import path
+import logging
+from os import path, makedirs
 from json import load
 from matplotlib import pyplot
 
@@ -17,12 +18,16 @@ DIM_XYZ_POS =  7
 PLOT_DOTS_PER_INCH = 100
 FIGSIZE_WIDTH_HEIGHT_INCHES = (5, 5)
 
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(levelname)s:%(name)s %(message)s'
+)
 
 class FilterData:
 
     def __init__(self):
         path_to_input = path.join(path.dirname(path.dirname(__file__)), 'data', INPUT_FILENAME)
-        print('> Reading data from file {}'.format(path_to_input))
+        logging.info('Reading data from file {}'.format(path_to_input))
 
         with open(path_to_input) as f:
             self.raw_data = load(f)
@@ -90,7 +95,7 @@ class RenderConvexHulls:
         ax_phe.scatter(*data, c='r', marker='o', s=1)
         ax_phe.plot(*self.ce_sd_cg_frame, c='k', lw=2)
         ax_phe.set_title('PHE bridges')
-        print('> Exporting {}'.format(filepath))
+        logging.info('Exporting {}'.format(filepath))
         pyplot.savefig(filepath, dpi=PLOT_DOTS_PER_INCH)
 
     def render_tyr_convex_hull(self, data: list, filepath: str) -> None:
@@ -100,7 +105,7 @@ class RenderConvexHulls:
         ax_tyr.scatter(*data, c='r', marker='o', s=1)
         ax_tyr.plot(*self.ce_sd_cg_frame, c='k', lw=2)
         ax_tyr.set_title('TYR bridges')
-        print('> Exporting {}'.format(filepath))
+        logging.info('Exporting {}'.format(filepath))
         pyplot.savefig(filepath, dpi=PLOT_DOTS_PER_INCH)
 
     def render_trp_convex_hull(self, data: list, filepath: str) -> None:
@@ -110,7 +115,7 @@ class RenderConvexHulls:
         ax_trp.scatter(*data, c='r', marker='o', s=1)
         ax_trp.plot(*self.ce_sd_cg_frame, c='k', lw=2)
         ax_trp.set_title('TRP bridges')
-        print('> Exporting {}'.format(filepath))
+        logging.info('Exporting {}'.format(filepath))
         pyplot.savefig(filepath, dpi=PLOT_DOTS_PER_INCH)
 
 
@@ -120,7 +125,9 @@ def main() -> None:
     data_tyr = filter_handle.get_tyr_data()
     data_trp = filter_handle.get_trp_data()
 
-    rootdir = path.dirname(__file__)
+    rootdir = path.join(path.dirname(__file__), 'plots')
+    makedirs(rootdir, exist_ok=True)
+
     png_convex_hull_phe = path.join(rootdir, OUTPUT_FILE_PHE)
     png_convex_hull_tyr = path.join(rootdir, OUTPUT_FILE_TYR)
     png_convex_hull_trp = path.join(rootdir, OUTPUT_FILE_TRP)
