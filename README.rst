@@ -195,7 +195,7 @@ angle between the *xy* and *CG-SD-CE* planes is obtained:
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\theta=\textrm{atan}^2(\textrm{CG}.z,\textrm{CG}.y)">
+        <img src="https://latex.codecogs.com/svg.latex?\theta=\textrm{atan}2(\textrm{CG}.z,\textrm{CG}.y)">
     </p>
 
 A new Euler axis is defined as:
