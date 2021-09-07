@@ -247,6 +247,8 @@ The satellites can be mapped to *H* by applying the quaternion operation,
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{H}\textrm{S}_1\\^{H}\textrm{S}_2\\^{H}\textrm{S}_3\end{bmatrix}=\begin{bmatrix}\textbf{r}^{F}\textrm{S}_1\textbf{r}^{-1}\\\textbf{r}^{F}\textrm{S}_2\textbf{r}^{-1}\\\textbf{r}^{F}\textrm{S}_3\textbf{r}^{-1}\end{bmatrix}">
     </p>
 
+Which summarizes the procedure for all six coordinates in a 3-bridge cluster.
+
 Generating the bridge distributions
 --------------------------------------------------
 To generate the bar chart describing the distribution of the 3-bridges, run:
