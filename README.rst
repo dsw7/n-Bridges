@@ -173,12 +173,12 @@ The algorithm also computes an axis of rotation (the Euler axis),
         <img src="https://latex.codecogs.com/svg.latex?\vec{u_1}={_{}^{F}{CE}}\times\begin{bmatrix}1&0&0\end{bmatrix}">
     </p>
 
-All members of *F* are rotated into a new frame *G* using a quaternion operation *p*. For simplicity, *p* is defined here as:
+All members of *F* are rotated into a new frame *G* using a quaternion operation **p**. For simplicity, **p** is defined here as:
 
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?p(\vec{u_1},-\alpha)">
+        <img src="https://latex.codecogs.com/svg.latex?\textbf{p}(\vec{u_1},-\alpha)">
     </p>
 
 And *G* is defined as:
