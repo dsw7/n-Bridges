@@ -3,7 +3,7 @@
 */plots
 
 # Do not publish README
-data/README.txt
+README.txt
 
 # Python compiled files and others
 __pycache__/
