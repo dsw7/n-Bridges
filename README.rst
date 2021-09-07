@@ -195,7 +195,7 @@ angle between the *xy* and *CG-SD-CE* planes is obtained:
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\theta_2=\textrm{atan}^2(CG.z,CG.y)"
+        <img src="https://latex.codecogs.com/svg.latex?\theta=\textrm{atan}^2(\textrm{CG}.z,\textrm{CG}.y)">
     </p>
 
 The remaining coordinates will be rotated into their final frame *H*. *CE* is omitted from the calculation as the
@@ -204,7 +204,15 @@ rotation takes place about the *x* axis. The Euler axis is defined as:
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\vec{u}=\begin{bmatrix}1&0&0\end{bmatrix}"
+        <img src="https://latex.codecogs.com/svg.latex?\vec{u_2}=\begin{bmatrix}1&0&0\end{bmatrix}"
+    </p>
+
+A new quaternion **q** is now defined:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\textbf{q}(\vec{u_2},-\theta)">
     </p>
 
 The rotation follows,
