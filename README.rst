@@ -239,6 +239,13 @@ Then defining a new quaternion composition **r**:
         <img src="https://latex.codecogs.com/svg.latex?\textbf{r}=\textbf{q}\textbf{p}">
     </p>
 
+The satellites can be mapped to *H* by applying the quaternion operation,
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{H}\textrm{S}_1\\^{H}\textrm{S}_2\\^{H}\textrm{S}_3\end{bmatrix}=\begin{bmatrix}\textbf{r}^{F}\textrm{S}_1\textbf{r}^{-1}\\\textbf{r}^{F}\textrm{S}_2\textbf{r}^{-1}\\\textbf{r}^{F}\textrm{S}_3\textbf{r}^{-1}\end{bmatrix}">
+    </p>
 
 Generating the bridge distributions
 --------------------------------------------------
