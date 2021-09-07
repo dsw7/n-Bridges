@@ -203,7 +203,7 @@ A new Euler axis is defined as:
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\vec{u_2}=\begin{bmatrix}1&0&0\end{bmatrix}"
+        <img src="https://latex.codecogs.com/svg.latex?\vec{u_2}=\begin{bmatrix}1&0&0\end{bmatrix}">
     </p>
 
 And a new quaternion **q** is now defined:
@@ -222,7 +222,23 @@ The rotation into the final frame *H* follows,
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{H}\textrm{CG}\\^{H}\textrm{SD}\\^{H}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{q}^{G}\textrm{CG}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{SD}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{CE}\textbf{q}^{-1}\end{bmatrix}">
     </p>
 
-The *CG*, *SD*, *CE*, *S1*, *S2* and *S3* coordinate frame *H* will now be positioned according to the criteria set out in the Mapping_ section.
+The *CG*, *SD*, and *CE* coordinate frame *H* will now be positioned according to the criteria set out in the Mapping_ section. The satellite
+points *S1*, *S2*, and *S3* can be transformed into frame *H* by first mapping into frame *F*:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{F}\textrm{S}_1\\^{F}\textrm{S}_2\\^{F}\textrm{S}_3\end{bmatrix}=\begin{bmatrix}\textrm{S}_1\\\textrm{S}_2\\\textrm{S}_3\end{bmatrix}-\textrm{SD}">
+    </p>
+
+Then defining a new quaternion composition **r**:
+
+.. raw:: html
+
+    <p align="center">
+        <img src="https://latex.codecogs.com/svg.latex?\textbf{r}=\textbf{q}\textbf{p}">
+    </p>
+
 
 Generating the bridge distributions
 --------------------------------------------------
