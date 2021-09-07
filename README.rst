@@ -154,7 +154,7 @@ tyrosine or tryptophan. The algorithm starts by mapping the cluster to a frame *
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}&space;{_{}^{F}{CG}}\\&space;{_{}^{F}{SD}}\\&space;{_{}^{F}{CE}}\\&space;{_{}^{F}{S_1}}\\&space;{_{}^{F}{S_2}}\\&space;{_{}^{F}{S_3}}\end{bmatrix}=&space;\begin{bmatrix}&space;CG\\&space;SD\\&space;CE\\&space;S_1\\S_2\\S_3\end{bmatrix}-SD">
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{F}\textrm{CG}\\^{F}\textrm{SD}\\^{F}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textrm{CG}\\\textrm{SD}\\\textrm{CE}\end{bmatrix}-\textrm{SD}">
     </p>
 
 The algorithm computes the direction cosine between the mapped *CE* coordinates and the *x* axis,
