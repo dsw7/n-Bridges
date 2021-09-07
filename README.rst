@@ -189,7 +189,7 @@ And *G* is defined as:
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{G}\textrm{CG}\\^{G}\textrm{SD}\\^{G}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{p}^{F}\textrm{CG}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{SD}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{CE}\textbf{p}^{-1}\end{bmatrix}">
     </p>
 
-The *SD-CE* bond axis is now colinear with the *x* axis. The *CG* coordinates remain non-coplanar with the *xy* plane. The
+This operation renders the *SD-CE* bond axis colinear with the *x* axis. The *CG* coordinates remain non-coplanar with the *xy* plane. The
 angle between the *xy* and *CG-SD-CE* planes is obtained:
 
 .. raw:: html
@@ -198,8 +198,7 @@ angle between the *xy* and *CG-SD-CE* planes is obtained:
         <img src="https://latex.codecogs.com/svg.latex?\theta=\textrm{atan}^2(\textrm{CG}.z,\textrm{CG}.y)">
     </p>
 
-The remaining coordinates will be rotated into their final frame *H*. *CE* is omitted from the calculation as the
-rotation takes place about the *x* axis. The Euler axis is defined as:
+A new Euler axis is defined as:
 
 .. raw:: html
 
@@ -207,7 +206,7 @@ rotation takes place about the *x* axis. The Euler axis is defined as:
         <img src="https://latex.codecogs.com/svg.latex?\vec{u_2}=\begin{bmatrix}1&0&0\end{bmatrix}"
     </p>
 
-A new quaternion **q** is now defined:
+And a new quaternion **q** is now defined:
 
 .. raw:: html
 
@@ -215,12 +214,12 @@ A new quaternion **q** is now defined:
         <img src="https://latex.codecogs.com/svg.latex?\textbf{q}(\vec{u_2},-\theta)">
     </p>
 
-The rotation follows,
+The rotation into the final frame *H* follows,
 
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}{^{H}{CG}}\\&space;{^{H}{S_1}}\\&space;{^{H}{S_2}}\\&space;{^{H}{S_3}}\end{bmatrix}=\begin{bmatrix}&space;q({^{G}{CG}},\vec{u},-\theta_2)\\&space;q({^{G}{S_1}},\vec{u},-\theta_2)\\&space;q({^{G}{S_2}},\vec{u},-\theta_2)\\&space;q({^{G}{S_3}},\vec{u},-\theta_2)\\&space;\end{bmatrix}">
+        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{H}\textrm{CG}\\^{H}\textrm{SD}\\^{H}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{q}^{G}\textrm{CG}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{SD}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{CE}\textbf{q}^{-1}\end{bmatrix}">
     </p>
 
 The *CG*, *SD*, *CE*, *S1*, *S2* and *S3* coordinate frame *H* will now be positioned according to the criteria set out in the Mapping_ section.
