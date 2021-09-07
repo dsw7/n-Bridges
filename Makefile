@@ -1,4 +1,4 @@
-.PHONY = help convex dist convex-groupby
+.PHONY = help convex dist convex-groupby test
 
 PYTHON_INTERP = /usr/bin/env python3
 ROOT_DIRECTORY := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
@@ -8,10 +8,12 @@ To display all targets:
     $$ make help
 Generate {phe,tyr,trp}_3d_bridges.png convex hull plots:
     $$ make convex
-Generate {(PHE|TYR|TRP)_(PHE|TYR|TRP)_(PHE|TYR|TRP)}_3d_bridges.png grouped convex hull plots:
+Generate {(phe|tyr|trp)_(phe|tyr|trp)_(phe|tyr|trp)}_3d_bridges.png grouped convex hull plots:
     $$ make convex-groupby
 Generate distribution.png:
     $$ make dist
+Run unit tests:
+    $$ make test
 endef
 
 export HELP_LIST_TARGETS
@@ -27,3 +29,6 @@ convex-groupby:
 
 dist:
 	@$(PYTHON_INTERP) $(ROOT_DIRECTORY)/distributions/get_3_bridge_distribution.py
+
+test:
+	@$(PYTHON_INTERP) -m pytest --verbose --capture=no $(ROOT_DIRECTORY)/tests
