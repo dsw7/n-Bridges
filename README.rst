@@ -178,7 +178,7 @@ All members of *F* are rotated into a new frame *G* using a quaternion operation
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?p(\vec{v},\vec{u_1},\theta)">
+        <img src="https://latex.codecogs.com/svg.latex?p(\vec{u_1},-\alpha)">
     </p>
 
 And *G* is defined as:
