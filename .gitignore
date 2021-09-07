@@ -1,5 +1,11 @@
+# Do not publish plots or json files
 */dump
 */plots
+
+# Do not publish README
+data/README.txt
+
+# Python compiled files and others
 __pycache__/
 *.py[cod]
 *$py.class
