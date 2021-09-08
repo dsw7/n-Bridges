@@ -162,7 +162,7 @@ The algorithm computes the direction cosine between the mapped *CE* coordinates 
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\alpha=\cos^{-1}\frac{_{}^{F}{CE}\cdot\begin{bmatrix}1&0&0\end{bmatrix}}{\left\|_{}^{F}{CE}\right\|}">
+        <img src="https://latex.codecogs.com/svg.latex?\alpha=\cos^{-1}\frac{_{}^{F}{\textrm{CE}}\cdot\begin{bmatrix}1&0&0\end{bmatrix}}{\left\|_{}^{F}{\textrm{CE}}\right\|}">
     </p>
 
 The algorithm also computes an axis of rotation (the Euler axis),
@@ -170,7 +170,7 @@ The algorithm also computes an axis of rotation (the Euler axis),
 .. raw:: html
 
     <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\vec{u_1}={_{}^{F}{CE}}\times\begin{bmatrix}1&0&0\end{bmatrix}">
+        <img src="https://latex.codecogs.com/svg.latex?\vec{u_1}={_{}^{F}{\textrm{CE}}}\times\begin{bmatrix}1&0&0\end{bmatrix}">
     </p>
 
 All members of *F* are rotated into a new frame *G* using a quaternion operation **p**. For simplicity, **p** is defined here as:
