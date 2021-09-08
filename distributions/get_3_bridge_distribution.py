@@ -112,5 +112,7 @@ def main():
     logging.info('Exporting file to %s', export_file)
     pyplot.savefig(export_file, dpi=IMAGE_DPI, bbox_inches='tight')
 
+    logging.info('Done!')
+
 if __name__ == '__main__':
     main()

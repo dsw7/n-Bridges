@@ -145,5 +145,7 @@ def main() -> None:
     plotter.render_tyr_convex_hull(data_tyr, png_convex_hull_tyr)
     plotter.render_trp_convex_hull(data_trp, png_convex_hull_trp)
 
+    logging.info('Done!')
+
 if __name__ == '__main__':
     main()
