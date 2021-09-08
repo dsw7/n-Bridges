@@ -10,7 +10,7 @@ from typing import Tuple
 from pytest import approx
 from numpy import random, array
 from pyquaternion import Quaternion
-from transformer import Transformer
+from data.transformer import Transformer
 
 
 class Triangle:
