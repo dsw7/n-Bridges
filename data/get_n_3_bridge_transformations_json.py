@@ -9,7 +9,6 @@ And this database.collection pair was then mongoexported to the json file:
 I repeat... this script is a hack. The metaromatic.ma2 module no longer exists.
 The metaromatic.ma2 module was superseded by the MetAromatic project:
     -- https://github.com/dsw7/MetAromatic
-
 """
 
 from itertools import groupby
@@ -30,7 +29,7 @@ CHAIN = 'A'
 CLIENT = MongoClient(port=PORT, host=HOST)
 
 
-class ThreeBridges():
+class ThreeBridges:
 
     def __init__(self, code):
         self.code = code
