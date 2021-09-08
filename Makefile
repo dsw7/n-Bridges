@@ -15,7 +15,7 @@ Generate distribution.png:
 Run unit tests:
     $$ make test
 Make all targets:
-	$$ make all
+    $$ make all
 endef
 
 export HELP_LIST_TARGETS
