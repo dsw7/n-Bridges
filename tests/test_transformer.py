@@ -1,5 +1,4 @@
 """
-dsw7@sfu.ca
 Unit testing the transformation algorithm
 """
 

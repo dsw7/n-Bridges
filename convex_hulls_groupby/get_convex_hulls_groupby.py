@@ -1,6 +1,4 @@
 """
-dsw7@sfu.ca
-
 Groupby convex hull plots for mapped bridges.
 """
 

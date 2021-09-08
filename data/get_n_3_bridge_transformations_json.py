@@ -1,6 +1,4 @@
 """
-dsw7@sfu.ca
-
 This script is a hack for getting 3-bridges from the following .csv:
     -- low_redundancy_delimiter_list.csv
 The script was used to generate the following MongoDB database.collection:
@@ -9,7 +7,7 @@ And this database.collection pair was then mongoexported to the json file:
     -- n_3_bridge_transformations.json
 
 I repeat... this script is a hack. The metaromatic.ma2 module no longer exists.
-This module was superseded by the MetAromatic project:
+The metaromatic.ma2 module was superseded by the MetAromatic project:
     -- https://github.com/dsw7/MetAromatic
 
 """

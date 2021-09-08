@@ -1,5 +1,4 @@
 """
-dsw7@sfu.ca
 Algorithm for performing full CH3-S-CH2 mapping to xy plane.
 """
 

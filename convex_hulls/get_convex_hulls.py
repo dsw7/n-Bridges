@@ -1,6 +1,4 @@
 """
-dsw7@sfu.ca
-
 Convex hull plots for mapped bridges.
 """
 
