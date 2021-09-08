@@ -21,7 +21,6 @@ from numpy import array
 from pymongo import MongoClient
 from transformer import Transformer
 
-
 DB = 'ma'
 COL = 'n_3_bridge_transformations'
 PORT = 27017
@@ -127,7 +126,7 @@ class ThreeBridges():
             for residue in tetrahedron:  # transform the CG-SD-CE frame
                 if residue[0] == 'MET':
                     transform = Transformer(*residue[2:5])  # cast to list for mongodb
-                    methionine_base = [arr.tolist() for arr in transform.base()]
+                    methionine_base = [arr.tolist() for arr in transform.get_base()]
                     transformed[''.join(residue[0:2])] = methionine_base
 
             for residue in tetrahedron:  # transform the satellite coordinates
