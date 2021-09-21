@@ -7,10 +7,6 @@ The script was used to generate the following MongoDB database.collection:
     -- ma.n_3_bridge_transformations
 And this database.collection pair was then mongoexported to the json file:
     -- n_3_bridge_transformations.json
-
-I repeat... this script is a hack. The metaromatic.ma2 module no longer exists.
-The metaromatic.ma2 module was superseded by the MetAromatic project:
-    -- https://github.com/dsw7/MetAromatic
 """
 
 import logging
@@ -24,7 +20,7 @@ from networkx import Graph, connected_components
 from transformer import Transformer
 
 LOW_REDUNDANCY_STRUCTURES_CSV = 'low_redundancy_delimiter_list.csv'
-MONGO_DATABASE = 'ma2'
+MONGO_DATABASE = 'ma'
 MONGO_COLLECTION = 'n_3_bridge_transformations'
 MONGO_TCP_PORT = 27017
 MONGO_HOST = 'localhost'
@@ -239,6 +235,7 @@ class ThreeBridges:
 
 def main() -> None:
     client = MongoClient(port=MONGO_TCP_PORT, host=MONGO_HOST)
+    logging.info('Will load data into MongoDB database: "%s" and collection: "%s"', MONGO_DATABASE, MONGO_COLLECTION)
 
     with open(LOW_REDUNDANCY_STRUCTURES_CSV) as f:
         codes = [line.strip('\n') for line in f]
@@ -256,7 +253,7 @@ def main() -> None:
 
             for transformation in transformations:
                 transformation['code'] = code
-                client[MONGO_DATABASE][MONGO_COLLECTION].insert(transformation)
+                client[MONGO_DATABASE][MONGO_COLLECTION].insert_one(transformation)
 
         except Exception:
             logging.exception('An exception has occurred:')
