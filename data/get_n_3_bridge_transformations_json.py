@@ -23,11 +23,11 @@ from pymongo import MongoClient
 from networkx import Graph, connected_components
 from transformer import Transformer
 
+LOW_REDUNDANCY_STRUCTURES_CSV = 'low_redundancy_delimiter_list.csv'
 MONGO_DATABASE = 'ma2'
 MONGO_COLLECTION = 'n_3_bridge_transformations'
 MONGO_TCP_PORT = 27017
 MONGO_HOST = 'localhost'
-LOW_REDUNDANCY_STRUCTURES_CSV = 'low_redundancy_delimiter_list.csv'
 CUTOFF_ANGLE = 360.00
 CUTOFF_DISTANCE = 6.00
 CHAIN = 'A'
@@ -44,13 +44,15 @@ logging.basicConfig(
 class CustomThreeBridgeGetter:
 
     def __init__(self, code: str) -> None:
+
         self.code = code
-        self.raw_data = []
+        self.raw_coordinate_data = []
         self.pairs = []
         self.joined_pairs = set()
         self.bridges = []
 
     def run_met_aromatic(self) -> bool:
+
         arguments = {
             'cutoff_distance': CUTOFF_DISTANCE,
             'cutoff_angle': CUTOFF_ANGLE,
@@ -64,10 +66,10 @@ class CustomThreeBridgeGetter:
         if self.pairs['exit_code'] == EXIT_FAILURE:
             return False
 
-        self.raw_data.extend(ma.transport['met_coordinates'])
-        self.raw_data.extend(ma.transport['phe_coordinates'])
-        self.raw_data.extend(ma.transport['tyr_coordinates'])
-        self.raw_data.extend(ma.transport['trp_coordinates'])
+        self.raw_coordinate_data.extend(ma.transport['met_coordinates'])
+        self.raw_coordinate_data.extend(ma.transport['phe_coordinates'])
+        self.raw_coordinate_data.extend(ma.transport['tyr_coordinates'])
+        self.raw_coordinate_data.extend(ma.transport['trp_coordinates'])
 
         return True
 
@@ -92,8 +94,6 @@ class CustomThreeBridgeGetter:
             if len(bridge) == VERTICES:
                 self.bridges.append(bridge)
 
-        # Note that inverse bridges (MET-ARO-MET) not removed!
-
         if not self.bridges:
             return False
 
@@ -116,10 +116,10 @@ class ThreeBridges:
 
     def __init__(self, code: str) -> None:
         self.code = code
-        self.bridges = []
-        self.outgoing = []
-        self.raw_data = []
-        self.raw_data_bridges = []
+        self.raw_bridges = []
+        self.bridges_without_inverts = []
+        self.raw_coordinate_data = []
+        self.raw_coordinate_data_bridges = []
         self.isolated_coordinates = []
         self.tetrahedrons = []
         self.transformations = []
@@ -127,28 +127,29 @@ class ThreeBridges:
     def remove_inverse_bridges(self) -> None:
         """ Remove bridges of form MET - ARO - MET - ARO """
 
-        for bridge in self.bridges:
+        for bridge in self.raw_bridges:
             string = ''.join(bridge)
             if len(findall('MET', string)) == 1:
-                self.outgoing.append(bridge)
+                self.bridges_without_inverts.append(bridge)
 
     def cluster_bridge_data(self) -> None:
         """ Get raw data corresponding only to bridges """
 
-        for bridge in self.outgoing:
+        for bridge in self.bridges_without_inverts:
             dict_bridge = {}
 
             for residue in bridge:
                 position = search(r'\d+', residue).group(0)
-                dict_bridge[residue] = [row for row in self.raw_data if row[5] == position]
+                dict_bridge[residue] = [row for row in self.raw_coordinate_data if row[5] == position]
 
-            self.raw_data_bridges.append(dict_bridge)
+            self.raw_coordinate_data_bridges.append(dict_bridge)
 
     def isolate_relevant_coordinates(self) -> None:
         """ Get only the relevant coordinates needed for quaternion change of base """
 
-        for bridge in self.raw_data_bridges:
+        for bridge in self.raw_coordinate_data_bridges:
             list_bridge = []
+
             for amino_acid in bridge:
                 for row in bridge.get(amino_acid):
                     if row[3] == 'MET' and row[2] == 'SD':
@@ -177,8 +178,10 @@ class ThreeBridges:
 
         for bridge in self.isolated_coordinates:
             tetrahedron = []
+
             for key, residues in groupby(bridge, key=lambda x: x[5]):
                 list_residues = list(residues)
+
                 if list_residues[0][3] == 'MET':
                     tetrahedron.append((
                         'MET', key,
@@ -191,9 +194,9 @@ class ThreeBridges:
                     coord_1 = array(list_residues[0][6:9]).astype(float)
                     coord_2 = array(list_residues[1][6:9]).astype(float)
                     tetrahedron.append((
-                        aromatic, key,
-                        0.5 * (coord_1 + coord_2)
+                        aromatic, key, 0.5 * (coord_1 + coord_2)
                     ))
+
             self.tetrahedrons.append(tetrahedron)
 
     def transform_tetrahedrons(self) -> None:
@@ -202,13 +205,13 @@ class ThreeBridges:
         for tetrahedron in self.tetrahedrons:
             transformed = {}
 
-            for residue in tetrahedron:  # transform the CG-SD-CE frame
+            for residue in tetrahedron:  # Transform the CG-SD-CE frame
                 if residue[0] == 'MET':
-                    transform = Transformer(*residue[2:5])  # cast to list for mongodb
+                    transform = Transformer(*residue[2:5])
                     methionine_base = [arr.tolist() for arr in transform.get_base()]
                     transformed[''.join(residue[0:2])] = methionine_base
 
-            for residue in tetrahedron:  # transform the satellite coordinates
+            for residue in tetrahedron:  # Transform the satellite coordinates
                 if residue[0] != 'MET':
                     transformed[''.join(residue[0:2])] = transform.rotate_satellite(residue[2]).tolist()
 
@@ -217,15 +220,15 @@ class ThreeBridges:
     def executor_main(self) -> Union[bool, list]:
         bridge_getter = CustomThreeBridgeGetter(self.code)
 
-        self.bridges = bridge_getter.get_bridging_interactions()
-        if not self.bridges:
+        self.raw_bridges = bridge_getter.get_bridging_interactions()
+        if not self.raw_bridges:
             return False
 
         self.remove_inverse_bridges()
-        if not self.bridges:
+        if not self.bridges_without_inverts:
             return False
 
-        self.raw_data = bridge_getter.raw_data
+        self.raw_coordinate_data = bridge_getter.raw_coordinate_data
         self.cluster_bridge_data()
         self.isolate_relevant_coordinates()
         self.isolate_tetrahedrons()
