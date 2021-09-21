@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 This script is a hack for getting 3-bridges from the following .csv:
     -- low_redundancy_delimiter_list.csv
@@ -11,60 +13,140 @@ The metaromatic.ma2 module was superseded by the MetAromatic project:
     -- https://github.com/dsw7/MetAromatic
 """
 
+import logging
 from itertools import groupby
+from typing import Union
 from re import findall, search
-from metaromatic.ma2 import MetAromatic
+from MetAromatic.core.pair import MetAromatic
 from numpy import array
 from pymongo import MongoClient
+from networkx import Graph, connected_components
 from transformer import Transformer
 
-DB = 'ma'
-COL = 'n_3_bridge_transformations'
-PORT = 27017
-HOST = 'localhost'
+MONGO_DATABASE = 'ma2'
+MONGO_COLLECTION = 'n_3_bridge_transformations'
+MONGO_TCP_PORT = 27017
+MONGO_HOST = 'localhost'
 LOW_REDUNDANCY_STRUCTURES_CSV = 'low_redundancy_delimiter_list.csv'
-ANGLE = 360.00
-CUTOFF = 6.00
+CUTOFF_ANGLE = 360.00
+CUTOFF_DISTANCE = 6.00
 CHAIN = 'A'
-CLIENT = MongoClient(port=PORT, host=HOST)
+MODEL = 'cp'
+VERTICES = 4
+EXIT_FAILURE = 1
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(levelname)s:%(name)s %(asctime)s %(message)s'
+)
+
+
+class CustomThreeBridgeGetter:
+
+    def __init__(self, code: str) -> None:
+        self.code = code
+        self.raw_data = []
+        self.pairs = []
+        self.joined_pairs = set()
+        self.bridges = []
+
+    def run_met_aromatic(self) -> bool:
+        arguments = {
+            'cutoff_distance': CUTOFF_DISTANCE,
+            'cutoff_angle': CUTOFF_ANGLE,
+            'chain': CHAIN,
+            'model': MODEL
+        }
+
+        ma = MetAromatic(**arguments)
+        self.pairs = ma.get_met_aromatic_interactions(self.code)
+
+        if self.pairs['exit_code'] == EXIT_FAILURE:
+            return False
+
+        self.raw_data.extend(ma.transport['met_coordinates'])
+        self.raw_data.extend(ma.transport['phe_coordinates'])
+        self.raw_data.extend(ma.transport['tyr_coordinates'])
+        self.raw_data.extend(ma.transport['trp_coordinates'])
+
+        return True
+
+    def get_joined_pairs(self) -> bool:
+        for result in self.pairs['results']:
+            pair = (
+                '{}{}'.format(result['aromatic_residue'], result['aromatic_position']),
+                'MET{}'.format(result['methionine_position'])
+            )
+            self.joined_pairs.add(pair)
+
+    def get_bridges(self) -> bool:
+        graph = Graph()
+        graph.add_edges_from(self.joined_pairs)
+
+        components = list(connected_components(graph))
+
+        if not components:
+            return False
+
+        for bridge in components:
+            if len(bridge) == VERTICES:
+                self.bridges.append(bridge)
+
+        # Note that inverse bridges (MET-ARO-MET) not removed!
+
+        if not self.bridges:
+            return False
+
+        return True
+
+    def get_bridging_interactions(self) -> Union[bool, list]:
+
+        if not self.run_met_aromatic():
+            return False
+
+        self.get_joined_pairs()
+
+        if not self.get_bridges():
+            return False
+
+        return self.bridges
 
 
 class ThreeBridges:
 
-    def __init__(self, code):
+    def __init__(self, code: str) -> None:
         self.code = code
-        ma = MetAromatic(code=code, angle=ANGLE, cutoff=CUTOFF, chain=CHAIN)
-        ma.met_aromatic()
-        self.raw_data = ma.methionines + ma.phenylalanines + ma.tyrosines + ma.tryptophans
-        self.bridges = ma.bridging_interactions(n=4)
-
-    def bridge_exists(self):
-        """ Check if entry contains a bridge """
-        if not self.bridges:
-            return False
-        return True
-
-    def remove_inverse_bridges(self):
-        """ Remove bridges of form MET - ARO - MET - ARO """
+        self.bridges = []
         self.outgoing = []
+        self.raw_data = []
+        self.raw_data_bridges = []
+        self.isolated_coordinates = []
+        self.tetrahedrons = []
+        self.transformations = []
+
+    def remove_inverse_bridges(self) -> None:
+        """ Remove bridges of form MET - ARO - MET - ARO """
+
         for bridge in self.bridges:
             string = ''.join(bridge)
             if len(findall('MET', string)) == 1:
                 self.outgoing.append(bridge)
 
-    def cluster_bridge_data(self):
+    def cluster_bridge_data(self) -> None:
         """ Get raw data corresponding only to bridges """
-        self.raw_data_bridges = []
+
         for bridge in self.outgoing:
             dict_bridge = {}
+
             for residue in bridge:
                 position = search(r'\d+', residue).group(0)
                 dict_bridge[residue] = [row for row in self.raw_data if row[5] == position]
+
             self.raw_data_bridges.append(dict_bridge)
 
-    def isolate_relevant_coordinates(self):
+    def isolate_relevant_coordinates(self) -> None:
         """ Get only the relevant coordinates needed for quaternion change of base """
-        self.isolated_coordinates = []
+
         for bridge in self.raw_data_bridges:
             list_bridge = []
             for amino_acid in bridge:
@@ -87,13 +169,12 @@ class ThreeBridges:
                         list_bridge.append(row)
                     elif row[3] == 'TRP' and row[2] == 'CH2':
                         list_bridge.append(row)
-                    else:
-                        pass
+
             self.isolated_coordinates.append(list_bridge)
 
-    def isolate_tetrahedrons(self):
+    def isolate_tetrahedrons(self) -> None:
         """ Compute methionine / aromatic centroid tetrahedrons """
-        self.tetrahedrons = []
+
         for bridge in self.isolated_coordinates:
             tetrahedron = []
             for key, residues in groupby(bridge, key=lambda x: x[5]):
@@ -115,11 +196,12 @@ class ThreeBridges:
                     ))
             self.tetrahedrons.append(tetrahedron)
 
-    def transform_tetrahedrons(self):
+    def transform_tetrahedrons(self) -> None:
         """ Map the methionine / aromatic centroid tetrahedrons to origin """
-        self.transformations = []
+
         for tetrahedron in self.tetrahedrons:
             transformed = {}
+
             for residue in tetrahedron:  # transform the CG-SD-CE frame
                 if residue[0] == 'MET':
                     transform = Transformer(*residue[2:5])  # cast to list for mongodb
@@ -132,32 +214,49 @@ class ThreeBridges:
 
             self.transformations.append(transformed)
 
+    def executor_main(self) -> Union[bool, list]:
+        bridge_getter = CustomThreeBridgeGetter(self.code)
 
-def get_test_pdb_codes(filename):
-    with open(filename) as f:
+        self.bridges = bridge_getter.get_bridging_interactions()
+        if not self.bridges:
+            return False
+
+        self.remove_inverse_bridges()
+        if not self.bridges:
+            return False
+
+        self.raw_data = bridge_getter.raw_data
+        self.cluster_bridge_data()
+        self.isolate_relevant_coordinates()
+        self.isolate_tetrahedrons()
+        self.transform_tetrahedrons()
+
+        return self.transformations
+
+
+def main() -> None:
+    client = MongoClient(port=MONGO_TCP_PORT, host=MONGO_HOST)
+
+    with open(LOW_REDUNDANCY_STRUCTURES_CSV) as f:
         codes = [line.strip('\n') for line in f]
-    return codes
 
-def main():
-    codes = get_test_pdb_codes(LOW_REDUNDANCY_STRUCTURES_CSV)
     for count, code in enumerate(codes, 1):
-        print(count, code)
         try:
-            obj = ThreeBridges(code=code)
-            if obj.bridge_exists():
-                obj.remove_inverse_bridges()
-                obj.cluster_bridge_data()
-                obj.isolate_relevant_coordinates()
-                obj.isolate_tetrahedrons()
-                obj.transform_tetrahedrons()
-                for tetrahedron in obj.transformations:
-                    tetrahedron['code'] = code
-                    CLIENT[DB][COL].insert(tetrahedron)
-            else:
-                print('No bridges.')
-        except Exception as exception:
-            print('An exception has occurred:')
-            print(exception)
+            getter = ThreeBridges(code)
+            transformations = getter.executor_main()
+
+            if not transformations:
+                logging.info('%i %s - No bridges', count, code)
+                continue
+
+            logging.info('%i %s - Found bridges', count, code)
+
+            for transformation in transformations:
+                transformation['code'] = code
+                client[MONGO_DATABASE][MONGO_COLLECTION].insert(transformation)
+
+        except Exception:
+            logging.exception('An exception has occurred:')
 
 if __name__ == '__main__':
     main()
