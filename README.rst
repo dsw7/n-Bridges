@@ -8,7 +8,7 @@ Supporting information for n-Bridges
 Finding 3-bridges
 --------------------------------------------------
 
-Step 1 - Preparing dependencies
+Preparing dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ was extended in order to make this project possible. First, the project was cloned:
 
@@ -22,138 +22,81 @@ Next, the project was built from source:
 
     cd MetAromatic && make install
 
-Step 1 - Finding low redundancy methionine-aromatic interactions
+Getting bridging interactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The first step of this project involved finding methionine-aromatic interactions using the following dataset consisting of
-low redundancy PDB entries:
+A short script, ``get_n_3_bridge_transformations_json.py``, located under the ``data`` directory, was written to mine bridging interactions using
+a ``.csv`` of low redundancy PDB entries:
 
 .. code-block:: bash
 
     data/low_redundancy_delimiter_list.csv
 
-The methionine-aromatic interactions were found using the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project. First, the project's ``runner.ini`` was modified as follows:
-
-.. code-block:: ini
-
-    [root-configs]
-
-    # Cutoff for the distance condition
-    cutoff-distance=6.0
-
-    # Cutoff for the angular condition
-    cutoff-angle=360.00
-
-    # Which chain to target in a PDB entry
-    chain=A
-
-    # Which cross product interpolation model to use
-    # Valid models are cp (Cross Product) or rm (Rodrigues Method)
-    model=cp
-
-For details regarding these constraints, please see the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project README, specifically the sections describing the distance
-and angular conditions. Next, a batch job was run as follows:
-
-.. code-block:: bash
-
-    $ /path/to/MetAromatic/runner.py batch --threads 5 \
-    --database <mongodb-database-name> \
-    --collection <mongodb-collection-name> \
-    /path/to/data/low_redundancy_delimiter_list.csv
-
-Here, the data was dumped into a MongoDB database.
-
-Step 2 - Finding 3-Bridges
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Methionine-aromatic interactons banked in Step 1 were then processed using a modified `NetworkX <https://networkx.org/>`_ script for finding bridging interactions in
-the `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project. The following file was obtained:
-
-.. code-block:: bash
-
-    data/3bridges_codes.csv
-
-This file consists of low redundancy PDB stuctures containing one or more 3-bridges.
-
-Step 3 - Isolating 3-Bridges and other relevant data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Next, the data in Step 2 was further processed to only include the following:
+This script isolated the following coordinates for any members participating in a 3-bridging interaction:
 
 - Methionine: *x, y, z* coordinates for **CE**, **SD** and **CG** coordinates
 - Aromatics: *x, y, z* coordinates for the aromatic centroids in any of **PHE**, **TYR**, or **TRP**
 
-Step 4 - Mapping
+Mapping the interactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. _Mapping:
 
-In the last step, the data in Step 3 was mapped following:
+The isolated 3-bridge data was then subjected to the following transformations:
 
-- The methionine **SD** coordinate was mapped to the *x, y, z* coordinates (0, 0, 0)
-- The methionine **SD-CE** bond axis was render co-linear with the vector (1, 0, 0)
-- The methionine **CG-SD-CE** plane was rendered coplanar with the *xy* plane
+- The methionine **SD** coordinate was transformed to the *x, y, z* coordinates (0, 0, 0)
+- The methionine **SD-CE** bond axis was transformed co-linear with the vector (1, 0, 0)
+- The methionine **CG-SD-CE** plane was transformed coplanar with the *xy* plane
 
-All mappings were loaded into the following JSON file:
+A more rigorous mathematical description of the mapping algorithm can be found in the Algorithm_ section.
 
-.. code-block:: bash
-
-    data/n_3_bridge_transformations.json
-
-An example entry in the JSON is of form:
+Data storage
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The mapped coordinates were loaded into a MongoDB collection. An example MongoDB document for ``8I1B`` can be seen below:
 
 .. code-block::
 
     {
             "MET95" : [
                     [
-                            0,
+                            0,                       // The SD coordinates mapped to (0, 0, 0)
                             0,
                             0
                     ],
                     [
-                            1.7932899932805066,
+                            1.7932899932805066,      // The SD-CE bond axis: Co-linear to <1, 0, 0>
                             -1.0617213491997201e-16,
                             3.245657730897657e-17
                     ],
                     [
-                            2.0502975055774364,
+                            2.0502975055774364,      // The SD-CG bond axis: Co-planar to the xy-plane
                             1.8305685287972522,
                             -8.881784197001252e-16
                     ]
             ],
             "TYR68" : [
-                    4.3213069436828375,
+                    4.3213069436828375,              // The centroid coordinates of the first satellite
                     4.585365158685238,
                     -1.7532318471879298
             ],
             "PHE99" : [
-                    1.3596593463055182,
+                    1.3596593463055182,              // The centroid coordinates of the second satellite
                     4.299250047200179,
                     3.4900506792385304
             ],
             "TYR90" : [
-                    5.783357705034454,
+                    5.783357705034454,               // The centroid coordinates of the third satellite
                     0.6692003627477932,
                     2.5985457048350815
             ],
             "code" : "8I1B"
     }
 
-Where the individual fields match:
+To generate the convex hulls, a JSON file:
 
-.. code-block::
+.. code-block:: bash
 
-    {
-        MET<P>: [
-            SD_coordinates: [x, y, z],
-            CE_coordinates: [x, y, z],
-            CG_coordinates: [x, y, z]
-        ],
-        <PHE|TYR|TRP><Q>: [x, y, z],
-        <PHE|TYR|TRP><R>: [x, y, z],
-        <PHE|TYR|TRP><S>: [x, y, z]
-        code: [pdb-code]
-    }
+    data/n_3_bridge_transformations.json
 
-And **P**, **Q**, **R**, **S** are unique residue position numbers. A mathematical description of
-the mapping algorithm can be found in the Algorithm_ section.
+Was simply generated from the collection via ``mongoexport``.
 
 Mapping algorithm
 --------------------------------------------------
