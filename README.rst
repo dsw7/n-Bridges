@@ -42,8 +42,8 @@ Mapping the interactions
 
 The isolated 3-bridge data was then subjected to the following transformations:
 
-- The methionine **SD** coordinate was transformed to the *x, y, z* coordinates (0, 0, 0)
-- The methionine **SD-CE** bond axis was transformed co-linear with the vector <1, 0, 0>
+- The methionine **SD** coordinate was mapped to the *x, y, z* coordinates (0, 0, 0)
+- The methionine **SD-CE** bond axis was transformed collinear with the vector <1, 0, 0>
 - The methionine **CG-SD-CE** plane was transformed coplanar with the *xy* plane
 
 A more rigorous mathematical description of the mapping algorithm can be found in the Algorithm_ section.
@@ -62,12 +62,12 @@ The mapped coordinates were loaded into a MongoDB collection. An example MongoDB
                             0
                     ],
                     [
-                            1.7932899932805066,      // The SD-CE bond axis: Co-linear to <1, 0, 0>
+                            1.7932899932805066,      // The SD-CE bond axis: Collinear with <1, 0, 0>
                             -1.0617213491997201e-16,
                             3.245657730897657e-17
                     ],
                     [
-                            2.0502975055774364,      // The SD-CG bond axis: Co-planar to the xy-plane
+                            2.0502975055774364,      // The SD-CG bond axis: Coplanar with the xy-plane
                             1.8305685287972522,
                             -8.881784197001252e-16
                     ]
