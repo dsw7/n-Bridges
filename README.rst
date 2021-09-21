@@ -5,8 +5,22 @@ Supporting information for n-Bridges
   :local:
   :depth: 3
 
-Basic sequence of events
+Finding 3-bridges
 --------------------------------------------------
+
+Step 1 - Preparing dependencies
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ was extended in order to make this project possible. First, the project was cloned:
+
+.. code-block:: bash
+
+    git clone https://github.com/dsw7/MetAromatic.git
+
+Next, the project was built from source:
+
+.. code-block:: bash
+
+    cd MetAromatic && make install
 
 Step 1 - Finding low redundancy methionine-aromatic interactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
