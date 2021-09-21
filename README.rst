@@ -10,7 +10,7 @@ Finding 3-bridges
 
 Preparing dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project was extended in order to make this research possible. First, the project was cloned:
+The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ package was leveraged in order to make this research possible. First, the project was cloned:
 
 .. code-block:: bash
 
@@ -21,6 +21,8 @@ Next, the project was built from source:
 .. code-block:: bash
 
     cd MetAromatic && make install
+
+This exposed some of the MetAromatic project's utilities for use in the ``get_n_3_bridge_transformations_json.py`` script.
 
 Getting bridging interactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,13 +92,13 @@ The mapped coordinates were loaded into a MongoDB collection. An example MongoDB
             "code" : "8I1B"
     }
 
-To generate the convex hulls, a JSON file:
+A JSON file was generated from the collection via ``mongoexport``:
 
 .. code-block:: bash
 
     data/n_3_bridge_transformations.json
 
-Was simply generated from the collection via ``mongoexport``.
+This file was used for all downstream visualizations.
 
 Mapping algorithm
 --------------------------------------------------
