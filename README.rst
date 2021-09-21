@@ -10,7 +10,7 @@ Finding 3-bridges
 
 Preparing dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ was extended in order to make this project possible. First, the project was cloned:
+The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ project was extended in order to make this research possible. First, the project was cloned:
 
 .. code-block:: bash
 
@@ -43,7 +43,7 @@ Mapping the interactions
 The isolated 3-bridge data was then subjected to the following transformations:
 
 - The methionine **SD** coordinate was transformed to the *x, y, z* coordinates (0, 0, 0)
-- The methionine **SD-CE** bond axis was transformed co-linear with the vector (1, 0, 0)
+- The methionine **SD-CE** bond axis was transformed co-linear with the vector <1, 0, 0>
 - The methionine **CG-SD-CE** plane was transformed coplanar with the *xy* plane
 
 A more rigorous mathematical description of the mapping algorithm can be found in the Algorithm_ section.
