@@ -4,7 +4,7 @@ Code for the following publications:
 
 - Curtis A. Gibbs; David S. Weber,; and Jeffrey J. Warren. Clustering of Aromatic Amino Acid Residues around Methionine in Proteins. *Biomolecules*. **2022**, *12* (1), 6.
 
-.. contents::
+.. contents:: **Table of Contents:**
   :local:
   :depth: 3
 
