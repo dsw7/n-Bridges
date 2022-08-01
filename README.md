@@ -4,6 +4,17 @@ Code for the following publications:
 * Curtis A. Gibbs; David S. Weber; and Jeffrey J. Warren. Clustering of Aromatic Amino Acid Residues around
   Methionine in Proteins. *Biomolecules*. **2022**, *12* (1), 6.
 
+## Table of Contents
+- [Finding 3-bridges](#finding-3-bridges)
+  - [Preparing dependencies](#preparing-dependencies)
+  - [Getting bridging interactions](#getting-bridging-interactions)
+  - [Mapping the interactions](#mapping-the-interactions)
+  - [Data storage](#data-storage)
+- [Mapping algorithm](#mapping-algorithm)
+- [Generating the bridge distributions](#generating-the-bridge-distributions)
+- [Generating convex hulls for all 10 3-bridge permutations](#generating-convex-hulls-for-all-10-3-bridge-permutations)
+- [Generating the convex hulls](#generating-the-convex-hulls)
+
 ## Finding 3-bridges
 ### Preparing dependencies
 The [MetAromatic](https://github.com/dsw7/MetAromatic) package was leveraged in order to make this research
