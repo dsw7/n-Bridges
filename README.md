@@ -49,7 +49,7 @@ This script isolated the following coordinates for any members participating in 
 ### Mapping the interactions
 The isolated 3-bridge data was then subjected to the following transformations:
 
-* The methionine $SD$ coordinate was mapped to the $x$, $y$, $z$ coordinates $(0, 0, 0)$
+* The methionine $SD$ coordinate was mapped to the $x$, $y$, $z$ coordinates $\begin{pmatrix}0 & 0 & 0\end{pmatrix}$
 * The methionine $SD-CE$ bond axis was transformed collinear with the vector $<1, 0, 0>$
 * The methionine $CG-SD-CE$ plane was transformed coplanar with the $xy$ plane
 
