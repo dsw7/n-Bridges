@@ -120,7 +120,7 @@ $$
 \textrm{CG}\\
 \textrm{SD}\\
 \textrm{CE}
-\end{bmatrix}
+\end{bmatrix} - \textrm{SD}
 $$
 
 $$ \begin{bmatrix}
