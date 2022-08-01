@@ -2,7 +2,8 @@ Supporting information for n-Bridges
 ==================================================
 Code for the following publications:
 
-- Curtis A. Gibbs; David S. Weber,; and Jeffrey J. Warren. Clustering of Aromatic Amino Acid Residues around Methionine in Proteins. *Biomolecules*. **2022**, *12* (1), 6.
+- Curtis A. Gibbs; David S. Weber,; and Jeffrey J. Warren. Clustering of Aromatic Amino Acid Residues around
+  Methionine in Proteins. *Biomolecules*. **2022**, *12* (1), 6.
 
 .. contents:: **Table of Contents:**
   :local:
@@ -13,7 +14,8 @@ Finding 3-bridges
 
 Preparing dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ package was leveraged in order to make this research possible. First, the project was cloned:
+The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ package was leveraged in order to make this research
+possible. First, the project was cloned:
 
 .. code-block:: bash
 
@@ -25,12 +27,13 @@ Next, the project was built from source:
 
     cd MetAromatic && make install
 
-This exposed some of the MetAromatic project's utilities for use in the ``get_n_3_bridge_transformations_json.py`` script.
+This exposed some of the MetAromatic project's utilities for use in the
+``get_n_3_bridge_transformations_json.py`` script.
 
 Getting bridging interactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-A short script, ``get_n_3_bridge_transformations_json.py``, located under the ``data`` directory, was written to mine bridging interactions using
-a ``.csv`` of low redundancy PDB entries:
+A short script, ``get_n_3_bridge_transformations_json.py``, located under the ``data`` directory, was written
+to mine bridging interactions using a ``.csv`` of low redundancy PDB entries:
 
 .. code-block:: bash
 
@@ -38,8 +41,8 @@ a ``.csv`` of low redundancy PDB entries:
 
 This script isolated the following coordinates for any members participating in a 3-bridging interaction:
 
-- Methionine: *x, y, z* coordinates for *$CE$*, **SD** and **CG** coordinates
-- Aromatics: *x, y, z* coordinates for the aromatic centroids in any of **PHE**, **TYR**, or **TRP**
+- Methionine: $x$, $y$, $z$ coordinates for $CE$, $SD$ and $CG$ coordinates
+- Aromatics: $x$, $y$, $z$ coordinates for the aromatic centroids in any of **PHE**, **TYR**, or **TRP**
 
 Mapping the interactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -47,15 +50,16 @@ Mapping the interactions
 
 The isolated 3-bridge data was then subjected to the following transformations:
 
-- The methionine **SD** coordinate was mapped to the *x, y, z* coordinates (0, 0, 0)
-- The methionine **SD-CE** bond axis was transformed collinear with the vector <1, 0, 0>
-- The methionine **CG-SD-CE** plane was transformed coplanar with the *xy* plane
+- The methionine $SD$ coordinate was mapped to the $x$, $y$, $z$ coordinates $(0, 0, 0)$
+- The methionine $SD-CE$ bond axis was transformed collinear with the vector $<1, 0, 0>$
+- The methionine $CG-SD-CE$ plane was transformed coplanar with the $xy$ plane
 
 A more rigorous mathematical description of the mapping algorithm can be found in the Algorithm_ section.
 
 Data storage
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The mapped coordinates were loaded into a MongoDB collection. An example MongoDB document for ``8I1B`` can be seen below:
+The mapped coordinates were loaded into a MongoDB collection. An example MongoDB document for ``8I1B`` can be
+seen below:
 
 .. code-block::
 
@@ -107,11 +111,10 @@ Mapping algorithm
 --------------------------------------------------
 .. _Algorithm:
 
-The mapping algorithm assumes a cluster consisting of $CE$, *SD* and *CG* coordinates,
-alongside three satellite points *S1*, *S2*, and *S3*. Here, the three satellite points
-are the Cartesian coordinates describing the aromatic centroid in any of phenylalanine,
-tyrosine or tryptophan. The algorithm starts by mapping the $CE$, *SD*, and *CG* subcluster
-to a frame *F*, where *SD* is considered the origin:
+The mapping algorithm assumes a cluster consisting of $CE$, $SD$ and $CG$ coordinates, alongside three
+satellite points $S1$, $S2$, and $S3$. Here, the three satellite points are the Cartesian coordinates
+describing the aromatic centroid in any of phenylalanine, tyrosine or tryptophan. The algorithm starts by
+mapping the $CE$, $SD$, and $CG$ subcluster to a frame $F$, where $SD$ is considered the origin:
 
 .. raw:: html
 
@@ -119,7 +122,7 @@ to a frame *F*, where *SD* is considered the origin:
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{F}\textrm{CG}\\^{F}\textrm{SD}\\^{F}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textrm{CG}\\\textrm{SD}\\\textrm{CE}\end{bmatrix}-\textrm{SD}">
     </p>
 
-The algorithm computes the direction cosine between the mapped $CE$ coordinates and the *x* axis,
+The algorithm computes the direction cosine between the mapped $CE$ coordinates and the $x$ axis,
 
 .. raw:: html
 
@@ -135,7 +138,7 @@ The algorithm also computes an axis of rotation (the Euler axis),
         <img src="https://latex.codecogs.com/svg.latex?\vec{u_1}={_{}^{F}{\textrm{CE}}}\times\begin{bmatrix}1&0&0\end{bmatrix}">
     </p>
 
-All members of *F* are rotated into a new frame *G* using a quaternion operation **p**. For simplicity, **p** is defined here as:
+All members of $F$ are rotated into a new frame $G$ using a quaternion operation **p**. For simplicity, **p** is defined here as:
 
 .. raw:: html
 
@@ -143,7 +146,7 @@ All members of *F* are rotated into a new frame *G* using a quaternion operation
         <img src="https://latex.codecogs.com/svg.latex?\textbf{p}(\vec{u_1},-\alpha)">
     </p>
 
-And *G* is defined as:
+And $G$ is defined as:
 
 .. raw:: html
 
@@ -151,8 +154,8 @@ And *G* is defined as:
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{G}\textrm{CG}\\^{G}\textrm{SD}\\^{G}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{p}^{F}\textrm{CG}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{SD}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{CE}\textbf{p}^{-1}\end{bmatrix}">
     </p>
 
-This operation renders the *SD-CE* bond axis colinear with the *x* axis. The *CG* coordinates remain non-coplanar with the *xy* plane. The
-angle between the *xy* and *CG-SD-CE* planes is obtained:
+This operation renders the $SD-CE$ bond axis colinear with the $x$ axis. The $CG$ coordinates remain
+non-coplanar with the $xy$ plane. The angle between the $xy$ and $CG-SD-CE$ planes is obtained:
 
 .. raw:: html
 
@@ -176,7 +179,7 @@ And a new quaternion **q** is now defined:
         <img src="https://latex.codecogs.com/svg.latex?\textbf{q}(\vec{u_2},-\theta)">
     </p>
 
-The rotation into the final frame *H* follows,
+The rotation into the final frame $H$ follows,
 
 .. raw:: html
 
@@ -184,8 +187,9 @@ The rotation into the final frame *H* follows,
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{H}\textrm{CG}\\^{H}\textrm{SD}\\^{H}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{q}^{G}\textrm{CG}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{SD}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{CE}\textbf{q}^{-1}\end{bmatrix}">
     </p>
 
-The *CG*, *SD*, and $CE$ coordinate frame *H* will now be positioned according to the criteria set out in the Mapping_ section. The satellite
-points *S1*, *S2*, and *S3* can be transformed into frame *H* by first mapping into frame *F*:
+The $CG$, $SD$, and $CE$ coordinate frame $H$ will now be positioned according to the criteria set out in the
+Mapping_ section. The satellite points $S1$, $S2$, and $S3$ can be transformed into frame $H$ by first mapping
+into frame $F$:
 
 .. raw:: html
 
@@ -201,7 +205,7 @@ Then defining a new quaternion composition **r**:
         <img src="https://latex.codecogs.com/svg.latex?\textbf{r}=\textbf{q}\textbf{p}">
     </p>
 
-The satellites can be mapped to *H* by applying the quaternion operation,
+The satellites can be mapped to $H$ by applying the quaternion operation,
 
 .. raw:: html
 
@@ -229,8 +233,8 @@ To generate the 10 convex hulls for all possible 3-bridge permutations, run:
 
     make convex-groupby
 
-This ``make`` target will generate the ``./*/plots/(phe|tyr|trp)(phe|tyr|trp)(phe|tyr|trp)_bridges_3d.png`` plots. There
-exist 10 combinations owing to the following:
+This ``make`` target will generate the ``./*/plots/(phe|tyr|trp)(phe|tyr|trp)(phe|tyr|trp)_bridges_3d.png``
+plots. There exist 10 combinations owing to the following:
 
 .. raw:: html
 
@@ -238,7 +242,7 @@ exist 10 combinations owing to the following:
         <img src="https://latex.codecogs.com/svg.latex?\frac{(r&plus;n-1)!}{(n-1)r!}">
     </p>
 
-Where *n* = 3, given that Nature can choose from one of PHE, TYR or TRP and *r* = 3 corresponding
+Where $n$ = 3, given that Nature can choose from one of PHE, TYR or TRP and $r$ = 3 corresponding
 to a 3-bridge.
 
 Generating the convex hulls
