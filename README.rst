@@ -51,7 +51,7 @@ Mapping the interactions
 The isolated 3-bridge data was then subjected to the following transformations:
 
 - The methionine $SD$ coordinate was mapped to the $x$, $y$, $z$ coordinates $(0, 0, 0)$
-- The methionine $SD-CE$ bond axis was transformed collinear with the vector <$1, 0, 0$>
+- The methionine $SD-CE$ bond axis was transformed collinear with the vector $<1, 0, 0>$
 - The methionine $CG-SD-CE$ plane was transformed coplanar with the $xy$ plane
 
 A more rigorous mathematical description of the mapping algorithm can be found in the Algorithm_ section.
@@ -115,6 +115,8 @@ The mapping algorithm assumes a cluster consisting of $CE$, $SD$ and $CG$ coordi
 satellite points $S1$, $S2$, and $S3$. Here, the three satellite points are the Cartesian coordinates
 describing the aromatic centroid in any of phenylalanine, tyrosine or tryptophan. The algorithm starts by
 mapping the $CE$, $SD$, and $CG$ subcluster to a frame $F$, where $SD$ is considered the origin:
+
+$$\begin{bmatrix}^{F}\textrm{CG}\\^{F}\textrm{SD}\\^{F}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textrm{CG}\\\textrm{SD}\\\textrm{CE}\end{bmatrix}-\textrm{SD}$$
 
 .. raw:: html
 
