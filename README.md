@@ -112,7 +112,11 @@ describing the aromatic centroid in any of phenylalanine, tyrosine or tryptophan
 mapping the $CE$, $SD$, and $CG$ subcluster to a frame $F$, where $SD$ is considered the origin:
 
 $$
-a = 2
+\begin{bmatrix}
+^{F}\textrm{CG}\\
+^{F}\textrm{SD}\\
+^{F}\textrm{CE}
+\end{bmatrix}
 $$
 
 $$ \begin{bmatrix}
