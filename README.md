@@ -1,116 +1,100 @@
-Supporting information for n-Bridges
-==================================================
+# Supporting information for n-Bridges
 Code for the following publications:
 
-- Curtis A. Gibbs; David S. Weber,; and Jeffrey J. Warren. Clustering of Aromatic Amino Acid Residues around
+* Curtis A. Gibbs; David S. Weber,; and Jeffrey J. Warren. Clustering of Aromatic Amino Acid Residues around
   Methionine in Proteins. *Biomolecules*. **2022**, *12* (1), 6.
 
-.. contents:: **Table of Contents:**
-  :local:
-  :depth: 3
-
-Finding 3-bridges
---------------------------------------------------
-
-Preparing dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The `MetAromatic <https://github.com/dsw7/MetAromatic>`_ package was leveraged in order to make this research
+## Finding 3-bridges
+### Preparing dependencies
+The [MetAromatic](https://github.com/dsw7/MetAromatic) package was leveraged in order to make this research
 possible. First, the project was cloned:
 
-.. code-block:: bash
-
-    git clone https://github.com/dsw7/MetAromatic.git
+```bash
+git clone https://github.com/dsw7/MetAromatic.git
+```
 
 Next, the project was built from source:
 
-.. code-block:: bash
-
-    cd MetAromatic && make install
+```bash
+cd MetAromatic && make install
+```
 
 This exposed some of the MetAromatic project's utilities for use in the
-``get_n_3_bridge_transformations_json.py`` script.
+`get_n_3_bridge_transformations_json.py` script.
 
-Getting bridging interactions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-A short script, ``get_n_3_bridge_transformations_json.py``, located under the ``data`` directory, was written
-to mine bridging interactions using a ``.csv`` of low redundancy PDB entries:
+### Getting bridging interactions
+A short script, `get_n_3_bridge_transformations_json.py`, located under the `data` directory, was written
+to mine bridging interactions using a `.csv` of low redundancy PDB entries:
 
-.. code-block:: bash
-
-    data/low_redundancy_delimiter_list.csv
+```bash
+data/low_redundancy_delimiter_list.csv
+```
 
 This script isolated the following coordinates for any members participating in a 3-bridging interaction:
 
-- Methionine: $x$, $y$, $z$ coordinates for $CE$, $SD$ and $CG$ coordinates
-- Aromatics: $x$, $y$, $z$ coordinates for the aromatic centroids in any of **PHE**, **TYR**, or **TRP**
+* Methionine: $x$, $y$, $z$ coordinates for $CE$, $SD$ and $CG$ coordinates
+* Aromatics: $x$, $y$, $z$ coordinates for the aromatic centroids in any of **PHE**, **TYR**, or **TRP**
 
-Mapping the interactions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. _Mapping:
-
+### Mapping the interactions
 The isolated 3-bridge data was then subjected to the following transformations:
 
-- The methionine $SD$ coordinate was mapped to the $x$, $y$, $z$ coordinates $(0, 0, 0)$
-- The methionine $SD-CE$ bond axis was transformed collinear with the vector $<1, 0, 0>$
-- The methionine $CG-SD-CE$ plane was transformed coplanar with the $xy$ plane
+* The methionine $SD$ coordinate was mapped to the $x$, $y$, $z$ coordinates $(0, 0, 0)$
+* The methionine $SD-CE$ bond axis was transformed collinear with the vector $<1, 0, 0>$
+* The methionine $CG-SD-CE$ plane was transformed coplanar with the $xy$ plane
 
-A more rigorous mathematical description of the mapping algorithm can be found in the Algorithm_ section.
+A more rigorous mathematical description of the mapping algorithm can be found in the [Mapping
+algorithm](#mapping-algorithm) section.
 
-Data storage
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The mapped coordinates were loaded into a MongoDB collection. An example MongoDB document for ``8I1B`` can be
+### Data storage
+The mapped coordinates were loaded into a MongoDB collection. An example MongoDB document for `8I1B` can be
 seen below:
 
-.. code-block::
+```javascript
+{
+        "MET95" : [
+                [
+                        0,                       // The SD coordinates mapped to (0, 0, 0)
+                        0,
+                        0
+                ],
+                [
+                        1.7932899932805066,      // The SD-CE bond axis: Collinear with <1, 0, 0>
+                        -1.0617213491997201e-16,
+                        3.245657730897657e-17
+                ],
+                [
+                        2.0502975055774364,      // The SD-CG bond axis: Coplanar with the xy-plane
+                        1.8305685287972522,
+                        -8.881784197001252e-16
+                ]
+        ],
+        "TYR68" : [
+                4.3213069436828375,              // The centroid coordinates of the first satellite
+                4.585365158685238,
+                -1.7532318471879298
+        ],
+        "PHE99" : [
+                1.3596593463055182,              // The centroid coordinates of the second satellite
+                4.299250047200179,
+                3.4900506792385304
+        ],
+        "TYR90" : [
+                5.783357705034454,               // The centroid coordinates of the third satellite
+                0.6692003627477932,
+                2.5985457048350815
+        ],
+        "code" : "8I1B"
+}
+```
+A JSON file was generated from the collection via `mongoexport`:
 
-    {
-            "MET95" : [
-                    [
-                            0,                       // The SD coordinates mapped to (0, 0, 0)
-                            0,
-                            0
-                    ],
-                    [
-                            1.7932899932805066,      // The SD-CE bond axis: Collinear with <1, 0, 0>
-                            -1.0617213491997201e-16,
-                            3.245657730897657e-17
-                    ],
-                    [
-                            2.0502975055774364,      // The SD-CG bond axis: Coplanar with the xy-plane
-                            1.8305685287972522,
-                            -8.881784197001252e-16
-                    ]
-            ],
-            "TYR68" : [
-                    4.3213069436828375,              // The centroid coordinates of the first satellite
-                    4.585365158685238,
-                    -1.7532318471879298
-            ],
-            "PHE99" : [
-                    1.3596593463055182,              // The centroid coordinates of the second satellite
-                    4.299250047200179,
-                    3.4900506792385304
-            ],
-            "TYR90" : [
-                    5.783357705034454,               // The centroid coordinates of the third satellite
-                    0.6692003627477932,
-                    2.5985457048350815
-            ],
-            "code" : "8I1B"
-    }
-
-A JSON file was generated from the collection via ``mongoexport``:
-
-.. code-block:: bash
-
-    data/n_3_bridge_transformations.json
+```bash
+data/n_3_bridge_transformations.json
+```
 
 This file was used for all downstream visualizations.
 
-Mapping algorithm
---------------------------------------------------
-.. _Algorithm:
-
+## Mapping algorithm
 The mapping algorithm assumes a cluster consisting of $CE$, $SD$ and $CG$ coordinates, alongside three
 satellite points $S1$, $S2$, and $S3$. Here, the three satellite points are the Cartesian coordinates
 describing the aromatic centroid in any of phenylalanine, tyrosine or tryptophan. The algorithm starts by
@@ -215,25 +199,23 @@ The satellites can be mapped to $H$ by applying the quaternion operation,
 
 Which summarizes the procedure for all six coordinates in a 3-bridge cluster.
 
-Generating the bridge distributions
---------------------------------------------------
+## Generating the bridge distributions
 To generate the bar chart describing the distribution of the 3-bridges, run:
 
-.. code-block::
+```
+make dist
+```
 
-    make dist
+This `make` target will generate the `./*/plots/distribution.png` plot.
 
-This ``make`` target will generate the ``./*/plots/distribution.png`` plot.
-
-Generating convex hulls for all 10 3-bridge permutations
---------------------------------------------------
+## Generating convex hulls for all 10 3-bridge permutations
 To generate the 10 convex hulls for all possible 3-bridge permutations, run:
 
-.. code-block::
+```
+make convex-groupby
+```
 
-    make convex-groupby
-
-This ``make`` target will generate the ``./*/plots/(phe|tyr|trp)(phe|tyr|trp)(phe|tyr|trp)_bridges_3d.png``
+This `make` target will generate the `./*/plots/(phe|tyr|trp)(phe|tyr|trp)(phe|tyr|trp)_bridges_3d.png`
 plots. There exist 10 combinations owing to the following:
 
 .. raw:: html
@@ -245,12 +227,11 @@ plots. There exist 10 combinations owing to the following:
 Where $n$ = 3, given that Nature can choose from one of PHE, TYR or TRP and $r$ = 3 corresponding
 to a 3-bridge.
 
-Generating the convex hulls
---------------------------------------------------
+## Generating the convex hulls
 To generate three convex hulls depicting the spatial distribution of one of PHE, TYR, or TRP, run:
 
-.. code-block::
+```
+make convex
+```
 
-    make convex
-
-This ``make`` target will generate the ``./*/plots/(phe|tyr|trp)_bridges_3d.png`` plots.
+This `make` target will generate the `./*/plots/(phe|tyr|trp)_bridges_3d.png` plots.
