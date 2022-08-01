@@ -252,7 +252,9 @@ make convex-groupby
 This `make` target will generate the `./*/plots/(phe|tyr|trp)(phe|tyr|trp)(phe|tyr|trp)_bridges_3d.png`
 plots. There exist 10 combinations owing to the following:
 
-\frac{(r&plus;n-1)!}{(n-1)r!}
+$$
+\frac{(r + n - 1)!}{(n - 1)r!}
+$$
 
 Where $n$ = 3, given that Nature can choose from one of PHE, TYR or TRP and $r$ = 3 corresponding
 to a 3-bridge.
