@@ -112,7 +112,19 @@ describing the aromatic centroid in any of phenylalanine, tyrosine or tryptophan
 mapping the $CE$, $SD$, and $CG$ subcluster to a frame $F$, where $SD$ is considered the origin:
 
 $$
-\begin{bmatrix}^{F}\textrm{CG}\\^{F}\textrm{SD}\\^{F}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textrm{CG}\\\textrm{SD}\\\textrm{CE}\end{bmatrix}-\textrm{SD}
+\begin{bmatrix}
+^{F}\textrm{CG}
+^{F}\textrm{SD}
+^{F}\textrm{CE}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\textrm{CG}
+\textrm{SD}
+\textrm{CE}
+\end{bmatrix}
+-
+\textrm{SD}
 $$
 
 The algorithm computes the direction cosine between the mapped $CE$ coordinates and the $x$ axis,
