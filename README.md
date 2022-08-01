@@ -138,13 +138,14 @@ $$
 The algorithm also computes an axis of rotation (the Euler axis),
 
 $$
-\vec{u_1}={_{}^{F}{\textrm{CE}}}\times\begin{bmatrix}1&0&0\end{bmatrix}
+\vec{u\_1} = {\_{}^{F}{\textrm{CE}}} \times \begin{bmatrix}1 & 0 & 0\end{bmatrix}
 $$
 
-All members of $F$ are rotated into a new frame $G$ using a quaternion operation **p**. For simplicity, **p** is defined here as:
+All members of $F$ are rotated into a new frame $G$ using a quaternion operation **p**. For simplicity, **p**
+is defined here as:
 
 $$
-\textbf{p}(\vec{u_1},-\alpha)
+\textbf{p}(\vec{u\_1}, -\alpha)
 $$
 
 And $G$ is defined as:
