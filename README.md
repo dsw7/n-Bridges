@@ -113,14 +113,14 @@ mapping the $CE$, $SD$, and $CG$ subcluster to a frame $F$, where $SD$ is consid
 
 $$
 \begin{bmatrix}
-^{F}\textrm{CG}
-^{F}\textrm{SD}
+^{F}\textrm{CG}\\
+^{F}\textrm{SD}\\
 ^{F}\textrm{CE}
 \end{bmatrix}
 =
 \begin{bmatrix}
-\textrm{CG}
-\textrm{SD}
+\textrm{CG}\\
+\textrm{SD}\\
 \textrm{CE}
 \end{bmatrix}
 -
