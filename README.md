@@ -117,6 +117,9 @@ $$
 ^{F}\textrm{SD}\\
 ^{F}\textrm{CE}
 \end{bmatrix} = \begin{bmatrix}
+\textrm{CG}\\
+\textrm{SD}\\
+\textrm{CE}
 \end{bmatrix}
 $$
 
