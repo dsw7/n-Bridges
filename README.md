@@ -151,32 +151,48 @@ $$
 And $G$ is defined as:
 
 $$
-\begin{bmatrix}^{G}\textrm{CG}\\^{G}\textrm{SD}\\^{G}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{p}^{F}\textrm{CG}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{SD}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{CE}\textbf{p}^{-1}\end{bmatrix}
+\begin{bmatrix}
+    ^{G}\textrm{CG}\\
+    ^{G}\textrm{SD}\\
+    ^{G}\textrm{CE}
+\end{bmatrix} = \begin{bmatrix}
+    \textbf{p}^{F}\textrm{CG}\textbf{p}^{-1}\\
+    \textbf{p}^{F}\textrm{SD}\textbf{p}^{-1}\\
+    \textbf{p}^{F}\textrm{CE}\textbf{p}^{-1}
+\end{bmatrix}
 $$
 
 This operation renders the $SD-CE$ bond axis colinear with the $x$ axis. The $CG$ coordinates remain
 non-coplanar with the $xy$ plane. The angle between the $xy$ and $CG-SD-CE$ planes is obtained:
 
 $$
-\theta=\textrm{atan}2(\textrm{CG}.z,\textrm{CG}.y)
+\theta = \textrm{atan}2(\textrm{CG}.z, \textrm{CG}.y)
 $$
 
 A new Euler axis is defined as:
 
 $$
-\vec{u_2}=\begin{bmatrix}1&0&0\end{bmatrix}
+\vec{u\_2} = \begin{bmatrix}1 & 0 & 0\end{bmatrix}
 $$
 
 And a new quaternion **q** is now defined:
 
 $$
-\textbf{q}(\vec{u_2},-\theta)
+\textbf{q}(\vec{u\_2}, -\theta)
 $$
 
 The rotation into the final frame $H$ follows,
 
 $$
-\begin{bmatrix}^{H}\textrm{CG}\\^{H}\textrm{SD}\\^{H}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{q}^{G}\textrm{CG}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{SD}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{CE}\textbf{q}^{-1}\end{bmatrix}
+\begin{bmatrix}
+    ^{H}\textrm{CG}\\
+    ^{H}\textrm{SD}\\
+    ^{H}\textrm{CE}
+\end{bmatrix} = \begin{bmatrix}
+    \textbf{q}^{G}\textrm{CG}\textbf{q}^{-1}\\
+    \textbf{q}^{G}\textrm{SD}\textbf{q}^{-1}\\
+    \textbf{q}^{G}\textrm{CE}\textbf{q}^{-1}
+\end{bmatrix}
 $$
 
 The $CG$, $SD$, and $CE$ coordinate frame $H$ will now be positioned according to the criteria set out in the
@@ -184,13 +200,21 @@ Mapping_ section. The satellite points $S1$, $S2$, and $S3$ can be transformed i
 into frame $F$:
 
 $$
-\begin{bmatrix}^{F}\textrm{S}_1\\^{F}\textrm{S}_2\\^{F}\textrm{S}_3\end{bmatrix}=\begin{bmatrix}\textrm{S}_1\\\textrm{S}_2\\\textrm{S}_3\end{bmatrix}-\textrm{SD}
+\begin{bmatrix}
+    ^{F}\textrm{S}_1\\
+    ^{F}\textrm{S}_2\\
+    ^{F}\textrm{S}_3
+\end{bmatrix} = \begin{bmatrix}
+    \textrm{S}_1\\
+    \textrm{S}_2\\
+    \textrm{S}_3
+\end{bmatrix} - \textrm{SD}
 $$
 
 Then defining a new quaternion composition **r**:
 
 $$
-\textbf{r}=\textbf{q}\textbf{p}
+\textbf{r} = \textbf{q}\textbf{p}
 $$
 
 The satellites can be mapped to $H$ by applying the quaternion operation,
