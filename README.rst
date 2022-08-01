@@ -38,7 +38,7 @@ a ``.csv`` of low redundancy PDB entries:
 
 This script isolated the following coordinates for any members participating in a 3-bridging interaction:
 
-- Methionine: *x, y, z* coordinates for **CE**, **SD** and **CG** coordinates
+- Methionine: *x, y, z* coordinates for *$CE$*, **SD** and **CG** coordinates
 - Aromatics: *x, y, z* coordinates for the aromatic centroids in any of **PHE**, **TYR**, or **TRP**
 
 Mapping the interactions
@@ -107,13 +107,11 @@ Mapping algorithm
 --------------------------------------------------
 .. _Algorithm:
 
-The mapping algorithm assumes a cluster consisting of *CE*, *SD* and *CG* coordinates,
+The mapping algorithm assumes a cluster consisting of $CE$, *SD* and *CG* coordinates,
 alongside three satellite points *S1*, *S2*, and *S3*. Here, the three satellite points
 are the Cartesian coordinates describing the aromatic centroid in any of phenylalanine,
-tyrosine or tryptophan. The algorithm starts by mapping the *CE*, *SD*, and *CG* subcluster
+tyrosine or tryptophan. The algorithm starts by mapping the $CE$, *SD*, and *CG* subcluster
 to a frame *F*, where *SD* is considered the origin:
-
-When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
 
 .. raw:: html
 
@@ -121,7 +119,7 @@ When $a \ne 0$, there are two solutions to $(ax^2 + bx + c = 0)$ and they are $$
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{F}\textrm{CG}\\^{F}\textrm{SD}\\^{F}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textrm{CG}\\\textrm{SD}\\\textrm{CE}\end{bmatrix}-\textrm{SD}">
     </p>
 
-The algorithm computes the direction cosine between the mapped *CE* coordinates and the *x* axis,
+The algorithm computes the direction cosine between the mapped $CE$ coordinates and the *x* axis,
 
 .. raw:: html
 
@@ -186,7 +184,7 @@ The rotation into the final frame *H* follows,
         <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{H}\textrm{CG}\\^{H}\textrm{SD}\\^{H}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{q}^{G}\textrm{CG}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{SD}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{CE}\textbf{q}^{-1}\end{bmatrix}">
     </p>
 
-The *CG*, *SD*, and *CE* coordinate frame *H* will now be positioned according to the criteria set out in the Mapping_ section. The satellite
+The *CG*, *SD*, and $CE$ coordinate frame *H* will now be positioned according to the criteria set out in the Mapping_ section. The satellite
 points *S1*, *S2*, and *S3* can be transformed into frame *H* by first mapping into frame *F*:
 
 .. raw:: html
