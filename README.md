@@ -111,102 +111,78 @@ satellite points $S1$, $S2$, and $S3$. Here, the three satellite points are the 
 describing the aromatic centroid in any of phenylalanine, tyrosine or tryptophan. The algorithm starts by
 mapping the $CE$, $SD$, and $CG$ subcluster to a frame $F$, where $SD$ is considered the origin:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{F}\textrm{CG}\\^{F}\textrm{SD}\\^{F}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textrm{CG}\\\textrm{SD}\\\textrm{CE}\end{bmatrix}-\textrm{SD}">
-    </p>
+$$
+\begin{bmatrix}^{F}\textrm{CG}\\^{F}\textrm{SD}\\^{F}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textrm{CG}\\\textrm{SD}\\\textrm{CE}\end{bmatrix}-\textrm{SD}
+$$
 
 The algorithm computes the direction cosine between the mapped $CE$ coordinates and the $x$ axis,
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\alpha=\cos^{-1}\frac{_{}^{F}{\textrm{CE}}\cdot\begin{bmatrix}1&0&0\end{bmatrix}}{\left\|_{}^{F}{\textrm{CE}}\right\|}">
-    </p>
+$$
+\alpha=\cos^{-1}\frac{_{}^{F}{\textrm{CE}}\cdot\begin{bmatrix}1&0&0\end{bmatrix}}{\left\|_{}^{F}{\textrm{CE}}\right\|}
+$$
 
 The algorithm also computes an axis of rotation (the Euler axis),
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\vec{u_1}={_{}^{F}{\textrm{CE}}}\times\begin{bmatrix}1&0&0\end{bmatrix}">
-    </p>
+$$
+\vec{u_1}={_{}^{F}{\textrm{CE}}}\times\begin{bmatrix}1&0&0\end{bmatrix}
+$$
 
 All members of $F$ are rotated into a new frame $G$ using a quaternion operation **p**. For simplicity, **p** is defined here as:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\textbf{p}(\vec{u_1},-\alpha)">
-    </p>
+$$
+\textbf{p}(\vec{u_1},-\alpha)
+$$
 
 And $G$ is defined as:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{G}\textrm{CG}\\^{G}\textrm{SD}\\^{G}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{p}^{F}\textrm{CG}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{SD}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{CE}\textbf{p}^{-1}\end{bmatrix}">
-    </p>
+$$
+\begin{bmatrix}^{G}\textrm{CG}\\^{G}\textrm{SD}\\^{G}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{p}^{F}\textrm{CG}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{SD}\textbf{p}^{-1}\\\textbf{p}^{F}\textrm{CE}\textbf{p}^{-1}\end{bmatrix}
+$$
 
 This operation renders the $SD-CE$ bond axis colinear with the $x$ axis. The $CG$ coordinates remain
 non-coplanar with the $xy$ plane. The angle between the $xy$ and $CG-SD-CE$ planes is obtained:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\theta=\textrm{atan}2(\textrm{CG}.z,\textrm{CG}.y)">
-    </p>
+$$
+\theta=\textrm{atan}2(\textrm{CG}.z,\textrm{CG}.y)
+$$
 
 A new Euler axis is defined as:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\vec{u_2}=\begin{bmatrix}1&0&0\end{bmatrix}">
-    </p>
+$$
+\vec{u_2}=\begin{bmatrix}1&0&0\end{bmatrix}
+$$
 
 And a new quaternion **q** is now defined:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\textbf{q}(\vec{u_2},-\theta)">
-    </p>
+$$
+\textbf{q}(\vec{u_2},-\theta)
+$$
 
 The rotation into the final frame $H$ follows,
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{H}\textrm{CG}\\^{H}\textrm{SD}\\^{H}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{q}^{G}\textrm{CG}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{SD}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{CE}\textbf{q}^{-1}\end{bmatrix}">
-    </p>
+$$
+\begin{bmatrix}^{H}\textrm{CG}\\^{H}\textrm{SD}\\^{H}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textbf{q}^{G}\textrm{CG}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{SD}\textbf{q}^{-1}\\\textbf{q}^{G}\textrm{CE}\textbf{q}^{-1}\end{bmatrix}
+$$
 
 The $CG$, $SD$, and $CE$ coordinate frame $H$ will now be positioned according to the criteria set out in the
 Mapping_ section. The satellite points $S1$, $S2$, and $S3$ can be transformed into frame $H$ by first mapping
 into frame $F$:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{F}\textrm{S}_1\\^{F}\textrm{S}_2\\^{F}\textrm{S}_3\end{bmatrix}=\begin{bmatrix}\textrm{S}_1\\\textrm{S}_2\\\textrm{S}_3\end{bmatrix}-\textrm{SD}">
-    </p>
+$$
+\begin{bmatrix}^{F}\textrm{S}_1\\^{F}\textrm{S}_2\\^{F}\textrm{S}_3\end{bmatrix}=\begin{bmatrix}\textrm{S}_1\\\textrm{S}_2\\\textrm{S}_3\end{bmatrix}-\textrm{SD}
+$$
 
 Then defining a new quaternion composition **r**:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\textbf{r}=\textbf{q}\textbf{p}">
-    </p>
+$$
+\textbf{r}=\textbf{q}\textbf{p}
+$$
 
 The satellites can be mapped to $H$ by applying the quaternion operation,
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{bmatrix}^{H}\textrm{S}_1\\^{H}\textrm{S}_2\\^{H}\textrm{S}_3\end{bmatrix}=\begin{bmatrix}\textbf{r}^{F}\textrm{S}_1\textbf{r}^{-1}\\\textbf{r}^{F}\textrm{S}_2\textbf{r}^{-1}\\\textbf{r}^{F}\textrm{S}_3\textbf{r}^{-1}\end{bmatrix}">
-    </p>
+$$
+\begin{bmatrix}^{H}\textrm{S}_1\\^{H}\textrm{S}_2\\^{H}\textrm{S}_3\end{bmatrix}=\begin{bmatrix}\textbf{r}^{F}\textrm{S}_1\textbf{r}^{-1}\\\textbf{r}^{F}\textrm{S}_2\textbf{r}^{-1}\\\textbf{r}^{F}\textrm{S}_3\textbf{r}^{-1}\end{bmatrix}
+$$
 
 Which summarizes the procedure for all six coordinates in a 3-bridge cluster.
 
@@ -229,11 +205,7 @@ make convex-groupby
 This `make` target will generate the `./*/plots/(phe|tyr|trp)(phe|tyr|trp)(phe|tyr|trp)_bridges_3d.png`
 plots. There exist 10 combinations owing to the following:
 
-.. raw:: html
-
-    <p align="center">
-        <img src="https://latex.codecogs.com/svg.latex?\frac{(r&plus;n-1)!}{(n-1)r!}">
-    </p>
+\frac{(r&plus;n-1)!}{(n-1)r!}
 
 Where $n$ = 3, given that Nature can choose from one of PHE, TYR or TRP and $r$ = 3 corresponding
 to a 3-bridge.
