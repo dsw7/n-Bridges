@@ -196,8 +196,8 @@ $$
 $$
 
 The $CG$, $SD$, and $CE$ coordinate frame $H$ will now be positioned according to the criteria set out in the
-Mapping_ section. The satellite points $S1$, $S2$, and $S3$ can be transformed into frame $H$ by first mapping
-into frame $F$:
+[Mapping the interactions](#mapping-the-interactions) section. The satellite points $S1$, $S2$, and $S3$ can
+be transformed into frame $H$ by first mapping into frame $F$:
 
 $$
 \begin{bmatrix}
