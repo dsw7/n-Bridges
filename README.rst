@@ -116,8 +116,6 @@ satellite points $S1$, $S2$, and $S3$. Here, the three satellite points are the 
 describing the aromatic centroid in any of phenylalanine, tyrosine or tryptophan. The algorithm starts by
 mapping the $CE$, $SD$, and $CG$ subcluster to a frame $F$, where $SD$ is considered the origin:
 
-$$\begin{bmatrix}^{F}\textrm{CG}\\^{F}\textrm{SD}\\^{F}\textrm{CE}\end{bmatrix}=\begin{bmatrix}\textrm{CG}\\\textrm{SD}\\\textrm{CE}\end{bmatrix}-\textrm{SD}$$
-
 .. raw:: html
 
     <p align="center">
