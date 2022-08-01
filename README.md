@@ -123,24 +123,16 @@ $$
 \end{bmatrix} - \textrm{SD}
 $$
 
-$$ \begin{bmatrix}
-^{F}\textrm{CG}\\
-^{F}\textrm{SD}\\
-^{F}\textrm{CE}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\textrm{CG}\\
-\textrm{SD}\\
-\textrm{CE}
-\end{bmatrix}
--
-\textrm{SD} $$
-
 The algorithm computes the direction cosine between the mapped $CE$ coordinates and the $x$ axis,
 
 $$
-\alpha=\cos^{-1}\frac{_{}^{F}{\textrm{CE}}\cdot\begin{bmatrix}1&0&0\end{bmatrix}}{\left\|_{}^{F}{\textrm{CE}}\right\|}
+\alpha = \cos^{-1} \frac
+{
+    \_{}^{F} {\textrm{CE}} \cdot \begin{bmatrix}1 & 0 & 0\end{bmatrix}
+}
+{
+    \left\| \_{}^{F}{\textrm{CE}}\right\|
+}
 $$
 
 The algorithm also computes an axis of rotation (the Euler axis),
