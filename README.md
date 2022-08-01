@@ -51,39 +51,39 @@ seen below:
 
 ```javascript
 {
-        "MET95" : [
-                [
-                        0,                       // The SD coordinates mapped to (0, 0, 0)
-                        0,
-                        0
-                ],
-                [
-                        1.7932899932805066,      // The SD-CE bond axis: Collinear with <1, 0, 0>
-                        -1.0617213491997201e-16,
-                        3.245657730897657e-17
-                ],
-                [
-                        2.0502975055774364,      // The SD-CG bond axis: Coplanar with the xy-plane
-                        1.8305685287972522,
-                        -8.881784197001252e-16
-                ]
+    "MET95" : [
+        [
+            0,                       // The SD coordinates mapped to (0, 0, 0)
+            0,
+            0
         ],
-        "TYR68" : [
-                4.3213069436828375,              // The centroid coordinates of the first satellite
-                4.585365158685238,
-                -1.7532318471879298
+        [
+            1.7932899932805066,      // The SD-CE bond axis: Collinear with <1, 0, 0>
+            -1.0617213491997201e-16,
+            3.245657730897657e-17
         ],
-        "PHE99" : [
-                1.3596593463055182,              // The centroid coordinates of the second satellite
-                4.299250047200179,
-                3.4900506792385304
-        ],
-        "TYR90" : [
-                5.783357705034454,               // The centroid coordinates of the third satellite
-                0.6692003627477932,
-                2.5985457048350815
-        ],
-        "code" : "8I1B"
+        [
+            2.0502975055774364,      // The SD-CG bond axis: Coplanar with the xy-plane
+            1.8305685287972522,
+            -8.881784197001252e-16
+        ]
+    ],
+    "TYR68" : [
+        4.3213069436828375,          // The centroid coordinates of the first satellite
+        4.585365158685238,
+        -1.7532318471879298
+    ],
+    "PHE99" : [
+        1.3596593463055182,          // The centroid coordinates of the second satellite
+        4.299250047200179,
+        3.4900506792385304
+    ],
+    "TYR90" : [
+        5.783357705034454,           // The centroid coordinates of the third satellite
+        0.6692003627477932,
+        2.5985457048350815
+    ],
+    "code" : "8I1B"
 }
 ```
 A JSON file was generated from the collection via `mongoexport`:
